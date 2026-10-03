@@ -1,43 +1,11 @@
 import { productosPlaceHolder } from "@/data/productos";
-
+import {
+  diasRestantes,
+  formatearFecha,
+  formatearFechaHora,
+} from "@/lib/fechas";
+import { estiloUrgencia, textoDias } from "@/lib/urgencia";
 //HELPERS
-
-const MS_POR_DIA = 1000 * 60 * 60 * 24;
-
-function diasRestantes(fechaVencimiento: string): number {
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0); //para que sea el valor a media noche, al restar seran numeros enteros.
-  const vence = new Date(`${fechaVencimiento}T00:00:00`); //ej. ("2026-10-02T00:00:00") es el dia a media noche
-  return Math.round((vence.getTime() - hoy.getTime()) / MS_POR_DIA); //el round es por si llega a cambiar la hora y el gettime deja la fecha en MS.
-}
-
-function formatearFecha(iso: string): string {
-  return new Date(`${iso}T00:00:00`).toLocaleDateString("es-CL"); //para D-M-Y
-}
-
-//para fechaUltimaRevision se necesita la fecha y la hora, por eso usamos toLocaleString
-function formatearFechaHora(iso: string): string {
-  return new Date(iso).toLocaleString("es-CL", {
-    dateStyle: "short",
-    timeStyle: "short",
-  });
-}
-
-//clases TW (colores de la paleta definidos en globals.css)
-//semaforo: rojo fuerte (vencido) → rojo suave (urgente) → amarillo (pronto) → azul suave (sin apuro)
-function estiloUrgencia(dias: number): string {
-  if (dias < 0) return "bg-strawberry text-white"; //vencido
-  if (dias <= 30) return "bg-strawberry/15 text-strawberry"; //urgente
-  if (dias <= 90) return "bg-saffron/30 text-deep-space"; //pronto (texto azul oscuro: el amarillo no se lee como texto)
-  return "bg-steel/10 text-steel"; //sin apuro
-}
-
-//texto de la etiqueta: "Vencido", "1 día" (singular) o "N días"
-function textoDias(dias: number): string {
-  if (dias < 0) return "Vencido";
-  if (dias === 1) return "1 día";
-  return `${dias} días`;
-}
 
 // PREPARADOR DE DATOS
 
