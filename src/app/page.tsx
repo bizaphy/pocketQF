@@ -5,7 +5,6 @@ import {
   formatearFechaHora,
 } from "@/lib/fechas";
 import { estiloUrgencia, textoDias } from "@/lib/urgencia";
-//HELPERS
 
 // PREPARADOR DE DATOS
 
