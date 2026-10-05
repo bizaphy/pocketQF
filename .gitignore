@@ -42,3 +42,7 @@ next-env.d.ts
 
 # apuntes personales
 /explanations/
+
+
+#db
+/data/
