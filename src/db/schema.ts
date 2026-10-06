@@ -18,12 +18,13 @@ export const vencimientos = sqliteTable(
     lote: text("lote").notNull(),
     fechaVencimiento: text("fecha_vencimiento").notNull(), // ISO: "YYYY-MM-DD"
     cantidad: integer("cantidad").notNull(),
-    ultimaRevision: integer("ultima_revision", { mode: "timestamp" })
+    ultimaRevision: integer("ultima_revision", { mode: "timestamp" }) // guarda epoch en segundos, Drizzle lo convierte a Date
       .notNull()
-      .$defaultFn(() => new Date())
-      .$onUpdate(() => new Date()),
+      .$defaultFn(() => new Date()) // al insertar, si no se pasa valor
+      .$onUpdate(() => new Date()), // al hacer update, se actualiza solo
   },
   (t) => [
+    //3er argumento: indices
     index("idx_vencimientos_fecha").on(t.fechaVencimiento),
     index("idx_vencimientos_producto").on(t.productoId),
   ],

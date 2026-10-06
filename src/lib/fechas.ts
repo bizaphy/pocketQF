@@ -9,8 +9,9 @@ export function formatearFecha(iso: string): string {
 }
 
 //para fechaUltimaRevision se necesita la fecha y la hora, por eso usamos toLocaleString
-export function formatearFechaHora(iso: string): string {
-  return new Date(iso).toLocaleString("es-CL", {
+//recibe un Date: Drizzle ya lo convierte (mode: "timestamp")
+export function formatearFechaHora(fecha: Date): string {
+  return fecha.toLocaleString("es-CL", {
     dateStyle: "short",
     timeStyle: "short",
   });

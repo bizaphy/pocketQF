@@ -1,20 +1,18 @@
-import { productosPlaceHolder } from "@/data/productos";
 import {
   diasRestantes,
   formatearFecha,
   formatearFechaHora,
 } from "@/lib/fechas";
 import { estiloUrgencia, textoDias } from "@/lib/urgencia";
+import { obtenerVencimientos } from "@/lib/consultas";
 import type { Metadata } from "next";
 //
 export const metadata: Metadata = { title: "Vencimientos" };
-// PREPARADOR DE DATOS
 
-const productos = [...productosPlaceHolder].sort(
-  (a, b) => a.fechaVencimiento.localeCompare(b.fechaVencimiento), //ej. "2026-10-02" < "2026-10-04" < "2026-10-15" debe hacerse con el formato Y-M-D (ISO), no con el CL
-);
+export default async function VencimientosPage() {
+  // async: espera la consulta. Ya vienen ordenados por fecha (orderBy en la consulta)
+  const vencimientos = await obtenerVencimientos();
 
-export default function VencimientosPage() {
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
       <header className="mb-6">
@@ -36,27 +34,29 @@ export default function VencimientosPage() {
             <tr>
               <th className="px-4 py-3 font-semibold">SKU</th>
               <th className="px-4 py-3 font-semibold">Producto</th>
+              <th className="px-4 py-3 font-semibold">Lote</th>
               <th className="px-4 py-3 font-semibold">Vence</th>
               <th className="px-4 py-3 text-right font-semibold">Cantidad</th>
               <th className="px-4 py-3 font-semibold">Última revisión</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-frosted/60">
-            {productos.map((producto) => {
-              const dias = diasRestantes(producto.fechaVencimiento);
+            {vencimientos.map((v) => {
+              const dias = diasRestantes(v.fechaVencimiento);
               return (
-                <tr
-                  key={producto.sku}
-                  className="transition-colors hover:bg-honeydew"
-                >
+                // key={v.id}: el sku se repite cuando un producto tiene varios lotes
+                <tr key={v.id} className="transition-colors hover:bg-honeydew">
                   <td className="whitespace-nowrap px-4 py-3 font-mono text-steel">
-                    {producto.sku}
+                    {v.sku}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 font-medium">
-                    {producto.nombre}
+                    {v.nombre}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 font-mono">
+                    {v.lote}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3">
-                    {formatearFecha(producto.fechaVencimiento)}{" "}
+                    {formatearFecha(v.fechaVencimiento)}{" "}
                     <span
                       className={`ml-1 rounded-full px-2 py-0.5 text-xs font-semibold ${estiloUrgencia(dias)}`}
                     >
@@ -64,10 +64,10 @@ export default function VencimientosPage() {
                     </span>
                   </td>
                   <td className="px-4 py-3 text-right tabular-nums">
-                    {producto.cantidad}
+                    {v.cantidad}
                   </td>
                   <td className="whitespace-nowrap px-4 py-3 text-steel">
-                    {formatearFechaHora(producto.ultimaRevision)}
+                    {formatearFechaHora(v.ultimaRevision)}
                   </td>
                 </tr>
               );
