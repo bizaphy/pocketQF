@@ -38,6 +38,7 @@ export async function crearVencimiento(
 
   // 1. validar con zod (sin lanzar errores)
   const resultado = esquemaVencimiento.safeParse(valores);
+  //
   if (!resultado.success) {
     return {
       ok: false,
@@ -60,7 +61,7 @@ export async function crearVencimiento(
   // 3. guardar
   const nuevo = insertarVencimiento(resultado.data);
 
-  // 4. que /vencimientos muestre el dato nuevo
+  // 4. que /vencimientos muestre el dato nuevo y no use el router cache
   revalidatePath("/vencimientos");
 
   return { ok: true, mensaje: "Vencimiento guardado", id: nuevo.id };
