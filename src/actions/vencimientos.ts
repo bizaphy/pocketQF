@@ -2,8 +2,13 @@
 // función que se ejecuta en el servidor cuando el usuario envía el formulario de venc.
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { existeProducto, insertarVencimiento } from "@/lib/consultas";
-import { esquemaVencimiento } from "@/lib/esquemas";
+import {
+  actualizarVencimiento,
+  eliminarVencimiento,
+  existeProducto,
+  insertarVencimiento,
+} from "@/lib/consultas";
+import { esquemaEdicionVencimiento, esquemaVencimiento } from "@/lib/esquemas";
 
 // caso 1: se guardó bien
 type EstadoExito = {
@@ -65,4 +70,56 @@ export async function crearVencimiento(
   revalidatePath("/vencimientos");
 
   return { ok: true, mensaje: "Vencimiento guardado", id: nuevo.id };
+}
+
+// edita lote, fecha y cantidad de un vencimiento; guardar actualiza "Última revisión"
+export async function editarVencimiento(
+  _estadoAnterior: EstadoFormulario, // lo exige useActionState; no se usa
+  formData: FormData,
+): Promise<EstadoFormulario> {
+  const valores = {
+    id: String(formData.get("id") ?? ""),
+    lote: String(formData.get("lote") ?? ""),
+    fechaVencimiento: String(formData.get("fechaVencimiento") ?? ""),
+    cantidad: String(formData.get("cantidad") ?? ""),
+  };
+
+  const resultado = esquemaEdicionVencimiento.safeParse(valores);
+  if (!resultado.success) {
+    return {
+      ok: false,
+      mensaje: "Revisa los campos marcados",
+      errores: z.flattenError(resultado.error).fieldErrors,
+      valores,
+    };
+  }
+
+  const editado = actualizarVencimiento(resultado.data);
+  if (!editado) {
+    return { ok: false, mensaje: "El vencimiento ya no existe", valores };
+  }
+
+  revalidatePath("/vencimientos");
+  return {
+    ok: true,
+    mensaje: `Lote ${editado.lote} actualizado`,
+    id: editado.id,
+  };
+}
+
+// borra un vencimiento (se llama desde el pop-up de confirmación de la tabla)
+export async function borrarVencimiento(
+  id: number,
+): Promise<{ ok: boolean; mensaje: string }> {
+  if (!Number.isInteger(id) || id <= 0) {
+    return { ok: false, mensaje: "Vencimiento no válido" };
+  }
+
+  const borrado = eliminarVencimiento(id);
+  if (!borrado) {
+    return { ok: false, mensaje: "El vencimiento ya no existe" };
+  }
+
+  revalidatePath("/vencimientos");
+  return { ok: true, mensaje: `Lote ${borrado.lote} eliminado` };
 }
