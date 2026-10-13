@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import BarraLateral from "@/components/barra-lateral";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -31,7 +32,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        {children}
+        {/* En pantallas grandes la barra va a la izquierda; en móvil queda bajo el contenido */}
+        <div className="flex flex-1 flex-col lg:flex-row">
+          <div className="min-w-0 flex-1 lg:order-2">{children}</div>
+          <BarraLateral />
+        </div>
         <Toaster richColors position="top-center" />
       </body>
     </html>
