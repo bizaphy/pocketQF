@@ -2,10 +2,25 @@ import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
 export const productos = sqliteTable("productos", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  sku: text("sku").notNull().unique(),
+  sku: text("sku").notNull().unique(), // código de barra (en pantalla se muestra así)
   nombre: text("nombre").notNull(),
   laboratorio: text("laboratorio"),
-  activo: integer("activo", { mode: "boolean" }).notNull().default(true),
+  stock: integer("stock").notNull().default(0),
+  categoria: text("categoria"),
+  activo: integer("activo", { mode: "boolean" }).notNull().default(true), // false: ya no viene en el Excel semanal
+});
+
+// registro de cada Excel de productos subido (uno por semana)
+export const importaciones = sqliteTable("importaciones", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  archivo: text("archivo").notNull(),
+  total: integer("total").notNull(), // filas leídas del Excel
+  nuevos: integer("nuevos").notNull(),
+  actualizados: integer("actualizados").notNull(),
+  desactivados: integer("desactivados").notNull(), // estaban en la BD pero no en el Excel
+  creadaEn: integer("creada_en", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
 });
 
 export const vencimientos = sqliteTable(
@@ -30,5 +45,50 @@ export const vencimientos = sqliteTable(
   ],
 );
 
+// notas del post-it del inicio
+export const notas = sqliteTable("notas", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  contenido: text("contenido").notNull(),
+  autor: text("autor").notNull(),
+  creadaEn: integer("creada_en", { mode: "timestamp" }) // momento exacto en que se escribió
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// inventario del día: una lista de productos elegidos para contar
+export const inventarios = sqliteTable("inventarios", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  modo: text("modo", { enum: ["azar", "categoria"] }).notNull(),
+  categoria: text("categoria"), // solo en modo "categoria"
+  creadoEn: integer("creado_en", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  finalizadoEn: integer("finalizado_en", { mode: "timestamp" }), // null: todavía se está contando
+});
+
+// cada producto de un inventario, con lo que decía el sistema y lo que se contó
+export const inventarioItems = sqliteTable(
+  "inventario_items",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    inventarioId: integer("inventario_id")
+      .notNull()
+      .references(() => inventarios.id, { onDelete: "cascade" }),
+    productoId: integer("producto_id")
+      .notNull()
+      .references(() => productos.id),
+    stockSistema: integer("stock_sistema").notNull(), // foto del stock al generar el inventario
+    contado: integer("contado"), // null: aún no se cuenta
+    contadoEn: integer("contado_en", { mode: "timestamp" }), // sirve para no repetir productos contados hace poco
+  },
+  (t) => [
+    index("idx_items_inventario").on(t.inventarioId),
+    index("idx_items_producto_contado").on(t.productoId, t.contadoEn),
+  ],
+);
+
 export type Producto = typeof productos.$inferSelect;
 export type Vencimiento = typeof vencimientos.$inferSelect;
+export type Nota = typeof notas.$inferSelect;
+export type Importacion = typeof importaciones.$inferSelect;
+export type Inventario = typeof inventarios.$inferSelect;

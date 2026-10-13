@@ -8,6 +8,27 @@
       "when": 1791171568375,
       "tag": "0000_mixed_bloodstorm",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1791891965111,
+      "tag": "0001_petite_betty_ross",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791893052522,
+      "tag": "0002_dizzy_texas_twister",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791896737038,
+      "tag": "0003_abandoned_black_tom",
+      "breakpoints": true
     }
   ]
 }
