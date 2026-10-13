@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PostIt from "@/components/post-it";
 
 const modulos = [
   {
@@ -14,10 +15,16 @@ const modulos = [
     activo: false,
   },
   {
-    href: "/calendario",
-    nombre: "Calendario CL",
-    descripcion: "Feriados y eventos",
-    activo: false,
+    href: "/productos",
+    nombre: "Administrar base de productos",
+    descripcion: "Actualizar productos desde el Excel semanal",
+    activo: true,
+  },
+  {
+    href: "/inventario",
+    nombre: "Inventario del día",
+    descripcion: "Conteo de productos al azar o por categoría",
+    activo: true,
   },
   {
     href: "/pocket-qf",
@@ -37,7 +44,7 @@ export default function Home() {
             <Link
               key={m.href}
               href={m.href}
-              className="rounded-xl border border-frosted bg-white p-5 hover:border-steel"
+              className="rounded-xl border border-frosted bg-white p-5 text-center hover:border-steel"
             >
               <h2 className="font-semibold">{m.nombre}</h2>
               <p className="text-sm text-steel">{m.descripcion}</p>
@@ -45,7 +52,7 @@ export default function Home() {
           ) : (
             <div
               key={m.href}
-              className="rounded-xl border border-dashed border-frosted p-5 opacity-60"
+              className="rounded-xl border border-dashed border-frosted p-5 text-center opacity-60"
             >
               <h2 className="font-semibold">{m.nombre}</h2>
               <p className="text-sm text-steel">Próximamente</p>
@@ -53,6 +60,7 @@ export default function Home() {
           ),
         )}
       </div>
+      <PostIt />
     </main>
   );
 }

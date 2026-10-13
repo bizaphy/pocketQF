@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 const links = [
   { href: "/", nombre: "Inicio" },
   { href: "/vencimientos", nombre: "Vencimientos" },
+  { href: "/productos", nombre: "Productos" },
+  { href: "/inventario", nombre: "Inventario" },
 ];
 
 export default function Navbar() {
