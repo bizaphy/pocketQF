@@ -10,6 +10,8 @@ import Link from "next/link";
 import BotonEditarVencimiento from "@/components/boton-editar-vencimiento";
 import BotonEliminarVencimiento from "@/components/boton-eliminar-vencimiento";
 import Interruptor from "@/components/interruptor";
+import EncabezadoModulo from "@/components/encabezado-modulo";
+import { obtenerModulo } from "@/lib/modulos";
 //
 export const metadata: Metadata = { title: "Vencimientos" };
 
@@ -24,26 +26,18 @@ export default async function VencimientosPage({
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
-      <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-steel">
-            PocketQF
-          </p>
-          <h1 className="mt-1 text-3xl font-bold text-deep-space">
-            Vencimientos
-          </h1>
-          <p className="mt-1 text-steel">
-            Productos ordenados por fecha de vencimiento, del más próximo al más
-            lejano.
-          </p>
-        </div>
+      <EncabezadoModulo
+        modulo={obtenerModulo("/vencimientos")}
+        titulo="Vencimientos"
+        descripcion="Productos ordenados por fecha de vencimiento, del más próximo al más lejano."
+      >
         <Link
           href="/vencimientos/nuevo"
           className="rounded-lg bg-deep-space px-4 py-2 text-sm font-semibold text-honeydew hover:bg-deep-space/90"
         >
           + Agregar vencimiento
         </Link>
-      </header>
+      </EncabezadoModulo>
 
       <div className="mb-3 flex justify-end">
         <Interruptor

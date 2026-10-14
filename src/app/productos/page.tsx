@@ -1,5 +1,7 @@
 import FormularioImportacion from "@/components/formulario-importacion";
 import Interruptor from "@/components/interruptor";
+import EncabezadoModulo from "@/components/encabezado-modulo";
+import { obtenerModulo } from "@/lib/modulos";
 import {
   contarProductosPorCategoria,
   obtenerUltimaImportacion,
@@ -23,18 +25,11 @@ export default async function ProductosPage({
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
-      <header className="mb-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-steel">
-          PocketQF
-        </p>
-        <h1 className="mt-1 text-3xl font-bold text-deep-space">
-          Base de productos
-        </h1>
-        <p className="mt-1 text-steel">
-          Sube el Excel semanal para actualizar código de barra, stock y
-          categoría de cada producto.
-        </p>
-      </header>
+      <EncabezadoModulo
+        modulo={obtenerModulo("/productos")}
+        titulo="Base de productos"
+        descripcion="Sube el Excel semanal para actualizar código de barra, stock y categoría de cada producto."
+      />
 
       <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
         <h2 className="font-semibold">Subir Excel</h2>

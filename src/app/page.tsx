@@ -1,38 +1,7 @@
 import Link from "next/link";
 import PostIt from "@/components/post-it";
-
-const modulos = [
-  {
-    href: "/vencimientos",
-    nombre: "Vencimientos",
-    descripcion: "Productos próximos a vencer",
-    activo: true,
-  },
-  {
-    href: "/tareas",
-    nombre: "Tareas pendientes",
-    descripcion: "Pendientes del equipo",
-    activo: false,
-  },
-  {
-    href: "/productos",
-    nombre: "Administrar base de productos",
-    descripcion: "Actualizar productos desde el Excel semanal",
-    activo: true,
-  },
-  {
-    href: "/inventario",
-    nombre: "Inventario del día",
-    descripcion: "Conteo de productos al azar o por categoría",
-    activo: true,
-  },
-  {
-    href: "/pocket-qf",
-    nombre: "Pocket QF",
-    descripcion: "Fichas de medicamentos",
-    activo: false,
-  },
-];
+import IconoModulo from "@/components/icono-modulo";
+import { modulos } from "@/lib/modulos";
 
 export default function Home() {
   return (
@@ -44,18 +13,25 @@ export default function Home() {
             <Link
               key={m.href}
               href={m.href}
-              className="rounded-xl border border-frosted bg-white p-5 text-center hover:border-steel"
+              // border-t-4: franja superior con el color del módulo
+              className={`flex items-center gap-4 rounded-xl border border-t-4 border-frosted bg-white p-5 transition-shadow hover:shadow-md ${m.acento.borde}`}
             >
-              <h2 className="font-semibold">{m.nombre}</h2>
-              <p className="text-sm text-steel">{m.descripcion}</p>
+              <IconoModulo modulo={m} />
+              <div>
+                <h2 className="font-semibold">{m.titulo}</h2>
+                <p className="text-sm text-steel">{m.descripcion}</p>
+              </div>
             </Link>
           ) : (
             <div
               key={m.href}
-              className="rounded-xl border border-dashed border-frosted p-5 text-center opacity-60"
+              className="flex items-center gap-4 rounded-xl border border-dashed border-frosted p-5 opacity-60 grayscale"
             >
-              <h2 className="font-semibold">{m.nombre}</h2>
-              <p className="text-sm text-steel">Próximamente</p>
+              <IconoModulo modulo={m} />
+              <div>
+                <h2 className="font-semibold">{m.titulo}</h2>
+                <p className="text-sm text-steel">Próximamente</p>
+              </div>
             </div>
           ),
         )}

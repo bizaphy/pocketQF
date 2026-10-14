@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import FormularioInventario from "@/components/formulario-inventario";
+import EncabezadoModulo from "@/components/encabezado-modulo";
+import { obtenerModulo } from "@/lib/modulos";
 import { formatearDiaFechaHora } from "@/lib/fechas";
 import { obtenerCategorias, obtenerInventarios } from "@/lib/inventario";
 
@@ -14,16 +16,11 @@ export default async function InventarioPage() {
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
-      <header className="mb-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-steel">
-          PocketQF
-        </p>
-        <h1 className="mt-1 text-3xl font-bold text-deep-space">Inventario</h1>
-        <p className="mt-1 text-steel">
-          Genera una lista de productos para contar hoy, a partir de la base de
-          productos del Excel.
-        </p>
-      </header>
+      <EncabezadoModulo
+        modulo={obtenerModulo("/inventario")}
+        titulo="Inventario"
+        descripcion="Genera una lista de productos para contar hoy, a partir de la base de productos del Excel."
+      />
 
       <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
         <h2 className="mb-4 font-semibold">Generar inventario del día</h2>
