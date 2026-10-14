@@ -10,6 +10,8 @@
   --color-frosted: #a8dadc; /* bordes y acentos suaves */
   --color-steel: #457b9d; /* texto secundario */
   --color-deep-space: #1d3557; /* texto principal y encabezados */
+  --color-sage: #2a9d8f; /* acento del módulo de tareas */
+  --color-lavender: #7b6cb5; /* acento del módulo Pocket QF */
 }
 
 @theme inline {
