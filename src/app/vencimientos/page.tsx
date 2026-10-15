@@ -12,6 +12,8 @@ import BotonEliminarVencimiento from "@/components/boton-eliminar-vencimiento";
 import Interruptor from "@/components/interruptor";
 import EncabezadoModulo from "@/components/encabezado-modulo";
 import { obtenerModulo } from "@/lib/modulos";
+import ContadorVencimientos from "@/components/contador-vencimientos";
+import { resumirVencimientos } from "@/lib/resumen-vencimientos";
 //
 export const metadata: Metadata = { title: "Vencimientos" };
 
@@ -23,6 +25,7 @@ export default async function VencimientosPage({
 
   // async: espera la consulta. Ya vienen ordenados por fecha (orderBy en la consulta)
   const vencimientos = await obtenerVencimientos();
+  const resumen = resumirVencimientos(vencimientos, new Date());
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
@@ -38,6 +41,8 @@ export default async function VencimientosPage({
           + Agregar vencimiento
         </Link>
       </EncabezadoModulo>
+
+      <ContadorVencimientos resumen={resumen} />
 
       <div className="mb-3 flex justify-end">
         <Interruptor

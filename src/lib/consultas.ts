@@ -73,6 +73,7 @@ export async function obtenerVencimientos() {
         id: vencimientos.id,
         sku: productos.sku,
         nombre: productos.nombre,
+        categoria: productos.categoria,
         lote: vencimientos.lote,
         fechaVencimiento: vencimientos.fechaVencimiento,
         cantidad: vencimientos.cantidad,
