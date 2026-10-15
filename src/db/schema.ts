@@ -172,6 +172,37 @@ export const tareaRegistros = sqliteTable(
   (t) => [index("idx_registros_tarea_fecha").on(t.tareaId, t.hechaEn)],
 );
 
+// Pocket QF: ficha de un principio activo con información de consulta rápida.
+// Los productos se asocian solos si su nombre contiene el principio activo o uno de sus términos
+// (el POS no trae el principio activo en una columna aparte); fichaProductos guarda las excepciones.
+export const fichas = sqliteTable("fichas", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  principioActivo: text("principio_activo").notNull().unique(), // ej: "Escitalopram"
+  terminos: text("terminos"), // otros nombres para buscar en el nombre del producto, separados por coma
+  indicaciones: text("indicaciones"), // diagnóstico o uso típico
+  efectosSecundarios: text("efectos_secundarios"),
+  observaciones: text("observaciones"), // precauciones y consejos para el paciente
+  actualizadaEn: integer("actualizada_en", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date())
+    .$onUpdate(() => new Date()),
+});
+
+// productos asociados a mano a una ficha (marcas cuyo nombre no trae el principio activo)
+export const fichaProductos = sqliteTable(
+  "ficha_productos",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    fichaId: integer("ficha_id")
+      .notNull()
+      .references(() => fichas.id, { onDelete: "cascade" }),
+    productoId: integer("producto_id")
+      .notNull()
+      .references(() => productos.id),
+  },
+  (t) => [uniqueIndex("uq_ficha_producto").on(t.fichaId, t.productoId)],
+);
+
 export type Producto = typeof productos.$inferSelect;
 export type Vencimiento = typeof vencimientos.$inferSelect;
 export type Nota = typeof notas.$inferSelect;
@@ -181,3 +212,4 @@ export type Zona = typeof zonas.$inferSelect;
 export type Estante = typeof estantes.$inferSelect;
 export type Repisa = typeof repisas.$inferSelect;
 export type Tarea = typeof tareas.$inferSelect;
+export type Ficha = typeof fichas.$inferSelect;

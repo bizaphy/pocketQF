@@ -9,6 +9,7 @@ export type Modulo = {
   titulo: string; // nombre largo para la tarjeta del inicio
   descripcion: string;
   activo: boolean;
+  destacado?: boolean; // la tarjeta del inicio ocupa todo el ancho y resalta con su color
   imagen?: string;
   icono: string;
   acento: {
@@ -103,8 +104,10 @@ export const modulos: Modulo[] = [
     href: "/pocket-qf",
     nombre: "Pocket QF",
     titulo: "Pocket QF",
-    descripcion: "Fichas de medicamentos",
-    activo: false,
+    descripcion:
+      "Consulta rápida de medicamentos: uso típico, efectos secundarios y precauciones",
+    activo: true,
+    destacado: true,
     icono: "M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7l-6 6ZM7 10l7 7",
     acento: {
       borde: "border-t-lavender",

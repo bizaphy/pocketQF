@@ -164,3 +164,25 @@ export const esquemaTarea = z.discriminatedUnion("tipo", [
 ]);
 
 export type DatosTarea = z.infer<typeof esquemaTarea>;
+
+// Pocket QF: ficha de un principio activo. Los textos vacíos se guardan como null
+const textoFicha = (max: number) =>
+  z
+    .string()
+    .trim()
+    .max(max, `Máximo ${max} caracteres`)
+    .transform((t) => t || null);
+
+export const esquemaFicha = z.object({
+  principioActivo: z
+    .string()
+    .trim()
+    .min(3, "Escribe el principio activo (al menos 3 letras)")
+    .max(80, "Máximo 80 caracteres"),
+  terminos: textoFicha(200),
+  indicaciones: textoFicha(2000),
+  efectosSecundarios: textoFicha(2000),
+  observaciones: textoFicha(2000),
+});
+
+export type DatosFicha = z.infer<typeof esquemaFicha>;
