@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import FormularioImportacion from "@/components/formulario-importacion";
 import Interruptor from "@/components/interruptor";
 import EncabezadoModulo from "@/components/encabezado-modulo";
@@ -32,12 +34,32 @@ export default async function ProductosPage({
       />
 
       <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
-        <h2 className="font-semibold">Subir Excel</h2>
+        <h2 className="flex items-center gap-2 font-semibold">
+          {/* logo de Excel (Wikimedia Commons, 486x500); al ser .svg, Image no lo optimiza */}
+          <Image src="/excel.svg" alt="" width={23} height={24} />
+          Subir Excel
+        </h2>
         <p className="mb-4 mt-1 text-sm text-steel">
           Se leen las columnas <b>Código de Barras</b>, <b>Nombre</b>,{" "}
           <b>Stock</b> y <b>Categoría</b>; el resto se ignora. Los productos que
           no vengan en el archivo quedan inactivos.
         </p>
+        <div className="mb-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {/* archivo estático en /public; download hace que se baje en vez de abrirse */}
+          <a
+            href="/productos-ejemplo.xlsx"
+            download
+            className="font-medium text-deep-space underline underline-offset-2 hover:text-steel"
+          >
+            Descargar Excel de ejemplo
+          </a>
+          <Link
+            href="/productos/guia-excel"
+            className="font-medium text-deep-space underline underline-offset-2 hover:text-steel"
+          >
+            Cómo armar bien el Excel
+          </Link>
+        </div>
         <FormularioImportacion />
         <p className="mt-4 text-xs text-steel">
           {ultima
