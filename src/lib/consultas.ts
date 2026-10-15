@@ -1,9 +1,16 @@
 import { connection } from "next/server";
 import { db } from "@/db";
-import { importaciones, notas, productos, vencimientos } from "@/db/schema";
+import {
+  importaciones,
+  notaEdiciones,
+  notas,
+  productos,
+  vencimientos,
+} from "@/db/schema";
 import { and, asc, count, desc, eq, gt, sql } from "drizzle-orm";
 import type { FilaProducto } from "@/lib/importar-productos";
 import type {
+  DatosEdicionNota,
   DatosEdicionVencimiento,
   DatosNota,
   DatosVencimiento,
@@ -87,18 +94,56 @@ export async function obtenerVencimientos() {
   );
 }
 
-// notas del post-it: la más reciente primero
+// notas del post-it: la más reciente primero, con cuántas veces se editó cada una
 export async function obtenerNotas() {
   await connection();
   return db
-    .select()
+    .select({
+      id: notas.id,
+      contenido: notas.contenido,
+      autor: notas.autor,
+      creadaEn: notas.creadaEn,
+      ediciones: sql<number>`(select count(*) from ${notaEdiciones} where ${notaEdiciones.notaId} = ${notas.id})`,
+    })
     .from(notas)
     .orderBy(desc(notas.creadaEn), desc(notas.id))
     .all();
 }
 
+// ediciones de una nota: la más reciente primero
+export async function obtenerEdicionesNota(notaId: number) {
+  await connection();
+  return db
+    .select()
+    .from(notaEdiciones)
+    .where(eq(notaEdiciones.notaId, notaId))
+    .orderBy(desc(notaEdiciones.editadaEn), desc(notaEdiciones.id))
+    .all();
+}
+
+export function obtenerNota(id: number) {
+  return db.select().from(notas).where(eq(notas.id, id)).get();
+}
+
 export function insertarNota(datos: DatosNota) {
   return db.insert(notas).values(datos).returning().get();
+}
+
+// guarda el texto nuevo y deja registro de quién editó y cómo decía antes
+export function editarNota({ id, contenido, editor }: DatosEdicionNota) {
+  return db.transaction((tx) => {
+    const nota = tx.select().from(notas).where(eq(notas.id, id)).get();
+    if (!nota) return undefined;
+    tx.insert(notaEdiciones)
+      .values({ notaId: id, editor, contenidoAnterior: nota.contenido })
+      .run();
+    return tx
+      .update(notas)
+      .set({ contenido })
+      .where(eq(notas.id, id))
+      .returning()
+      .get();
+  });
 }
 
 // Reemplaza la base de productos con lo que trae el Excel semanal, todo en una transacción:

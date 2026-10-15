@@ -61,6 +61,23 @@ export const notas = sqliteTable("notas", {
     .$defaultFn(() => new Date()),
 });
 
+// cada edición de una nota: quién la editó, cuándo y cómo decía antes
+export const notaEdiciones = sqliteTable(
+  "nota_ediciones",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    notaId: integer("nota_id")
+      .notNull()
+      .references(() => notas.id, { onDelete: "cascade" }),
+    editor: text("editor").notNull(),
+    contenidoAnterior: text("contenido_anterior").notNull(),
+    editadaEn: integer("editada_en", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (t) => [index("idx_ediciones_nota").on(t.notaId)],
+);
+
 // inventario del día: una lista de productos elegidos para contar
 export const inventarios = sqliteTable("inventarios", {
   id: integer("id").primaryKey({ autoIncrement: true }),

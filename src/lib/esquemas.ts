@@ -37,6 +37,15 @@ export const esquemaNota = z.object({
 
 export type DatosNota = z.infer<typeof esquemaNota>;
 
+// editar la nota del día: el nuevo texto y quién la edita
+export const esquemaEdicionNota = z.object({
+  id: z.coerce.number().int().positive(),
+  contenido: esquemaNota.shape.contenido,
+  editor: esquemaNota.shape.autor,
+});
+
+export type DatosEdicionNota = z.infer<typeof esquemaEdicionNota>;
+
 export const esquemaGenerarInventario = z
   .object({
     modo: z.enum(["azar", "categoria"], {

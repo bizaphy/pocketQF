@@ -50,6 +50,13 @@
       "when": 1792102792899,
       "tag": "0006_majestic_rictor",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1792106116710,
+      "tag": "0007_graceful_swarm",
+      "breakpoints": true
     }
   ]
 }

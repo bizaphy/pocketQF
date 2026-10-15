@@ -1,10 +1,11 @@
 // Post-it del inicio: muestra en grande solo la nota del día (la más reciente escrita hoy),
-// con su autor y fecha y hora exacta. Al lado, el historial con las notas anteriores.
+// con su autor, fecha y hora exacta, y quién la editó. Al lado, el historial con las notas anteriores.
 // Componente de servidor: "hoy" y las fechas se calculan con la hora del servidor
 
 import { isToday } from "date-fns";
 import FormularioNota from "@/components/formulario-nota";
-import { obtenerNotas } from "@/lib/consultas";
+import NotaDelDia from "@/components/nota-del-dia";
+import { obtenerEdicionesNota, obtenerNotas } from "@/lib/consultas";
 import { formatearDiaFechaHora } from "@/lib/fechas";
 
 export default async function PostIt() {
@@ -13,6 +14,7 @@ export default async function PostIt() {
   // la nota del día es la más reciente, pero solo si se escribió hoy
   const delDia = notas[0] && isToday(notas[0].creadaEn) ? notas[0] : null;
   const historial = delDia ? notas.slice(1) : notas;
+  const ediciones = delDia ? await obtenerEdicionesNota(delDia.id) : [];
 
   return (
     <section className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_16rem]">
@@ -29,26 +31,33 @@ export default async function PostIt() {
           </h2>
         </header>
 
-        {/* la nota ocupa el centro del cuadro; si es larga, hace scroll */}
-        <div className="flex min-h-0 flex-1 flex-col justify-center overflow-y-auto px-8 py-4">
-          {delDia ? (
-            <>
-              {/* whitespace-pre-wrap: respeta los saltos de línea que escribió */}
-              <p className="whitespace-pre-wrap break-words text-center text-2xl font-semibold leading-snug sm:text-3xl">
-                {delDia.contenido}
+        {/* la nota ocupa el centro del cuadro; si es larga, hace scroll.
+            my-auto centra sin cortar el comienzo cuando no cabe (justify-center sí lo cortaría) */}
+        <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-8 py-4">
+          <div className="my-auto">
+            {delDia ? (
+              <NotaDelDia
+                key={`${delDia.id}-${delDia.ediciones}`} // al editarse, vuelve a mostrar la nota (sale del modo edición)
+                nota={{
+                  id: delDia.id,
+                  contenido: delDia.contenido,
+                  autor: delDia.autor,
+                  fecha: formatearDiaFechaHora(delDia.creadaEn),
+                  fechaISO: delDia.creadaEn.toISOString(),
+                }}
+                ediciones={ediciones.map((e) => ({
+                  id: e.id,
+                  editor: e.editor,
+                  contenidoAnterior: e.contenidoAnterior,
+                  fecha: formatearDiaFechaHora(e.editadaEn),
+                }))}
+              />
+            ) : (
+              <p className="text-center text-steel">
+                Todavía no hay nota para hoy. Escríbela abajo.
               </p>
-              <p className="mt-6 text-center text-sm text-steel">
-                — {delDia.autor} ·{" "}
-                <time dateTime={delDia.creadaEn.toISOString()}>
-                  {formatearDiaFechaHora(delDia.creadaEn)}
-                </time>
-              </p>
-            </>
-          ) : (
-            <p className="text-center text-steel">
-              Todavía no hay nota para hoy. Escríbela abajo.
-            </p>
-          )}
+            )}
+          </div>
         </div>
 
         <FormularioNota />
@@ -70,6 +79,7 @@ export default async function PostIt() {
                     {formatearDiaFechaHora(n.creadaEn)}
                   </time>{" "}
                   · {n.autor}
+                  {n.ediciones > 0 && " · editada"}
                 </p>
                 <p className="mt-0.5 line-clamp-3 whitespace-pre-wrap break-words text-sm">
                   {n.contenido}
