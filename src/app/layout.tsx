@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <BarraLateral />
         </div>
-        <Toaster richColors position="top-center" />
+        <Toaster richColors position="bottom-center" />
       </body>
     </html>
   );
