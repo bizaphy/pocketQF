@@ -46,3 +46,5 @@ next-env.d.ts
 
 #db
 /data/
+# export real del POS (costes, precios y stock): no se sube
+/src/data/
