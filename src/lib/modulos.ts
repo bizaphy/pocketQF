@@ -58,7 +58,8 @@ export const modulos: Modulo[] = [
     titulo: "Administrar base de productos",
     descripcion: "Actualizar productos desde el Excel semanal",
     activo: true,
-    icono: "M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Zm0 0v5h5M12 18v-6M9 15l3-3 3 3",
+    icono:
+      "M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Zm0 0v5h5M12 18v-6M9 15l3-3 3 3",
     acento: {
       borde: "border-t-steel",
       fondo: "bg-steel/12",
@@ -73,13 +74,29 @@ export const modulos: Modulo[] = [
     titulo: "Inventario del día",
     descripcion: "Conteo de productos al azar o por categoría",
     activo: true,
-    icono: "M9 4h6v3H9V4Zm-2 1H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-1M9 12l2 2 4-4M9 17h6",
+    icono:
+      "M9 4h6v3H9V4Zm-2 1H6a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-1M9 12l2 2 4-4M9 17h6",
     acento: {
       borde: "border-t-saffron",
       fondo: "bg-saffron/15",
       punto: "bg-saffron",
       texto: "text-saffron",
       subrayado: "decoration-saffron",
+    },
+  },
+  {
+    href: "/ubicaciones",
+    nombre: "Ubicaciones",
+    titulo: "Ubicaciones",
+    descripcion: "Mapa de la farmacia con estantes y repisas",
+    activo: true,
+    icono: "M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Zm0 0v14m6-12v14",
+    acento: {
+      borde: "border-t-moss",
+      fondo: "bg-moss/12",
+      punto: "bg-moss",
+      texto: "text-moss",
+      subrayado: "decoration-moss",
     },
   },
   {

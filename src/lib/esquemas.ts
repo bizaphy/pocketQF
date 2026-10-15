@@ -71,3 +71,56 @@ export const esquemaConteo = z.union([
     .int("Debe ser un número entero")
     .min(0, "No puede ser negativo"),
 ]);
+
+// ubicaciones: zona del mapa (ej: "Sala de ventas")
+export const esquemaZona = z.object({
+  nombre: z
+    .string()
+    .trim()
+    .min(1, "Escribe el nombre de la zona")
+    .max(40, "Máximo 40 caracteres"),
+});
+
+export const esquemaTipoMueble = z.enum(
+  ["estante", "vitrina", "refrigerador", "meson"],
+  { error: "Tipo de mueble no válido" },
+);
+
+export const esquemaEstante = z.object({
+  id: z.coerce.number().int().positive(),
+  nombre: z
+    .string()
+    .trim()
+    .min(1, "El nombre es obligatorio")
+    .max(40, "Máximo 40 caracteres"),
+  // vacío = sin detalle
+  detalle: z
+    .string()
+    .trim()
+    .max(40, "Máximo 40 caracteres")
+    .transform((d) => d || null),
+  tipo: esquemaTipoMueble,
+});
+
+export type DatosEstante = z.infer<typeof esquemaEstante>;
+
+// posición y tamaño en celdas; que quepa en el mapa lo revisa mapa.ts
+export const esquemaRect = z.object({
+  x: z.number().int(),
+  y: z.number().int(),
+  ancho: z.number().int().min(1),
+  alto: z.number().int().min(1),
+});
+
+export const esquemaRepisa = z.object({
+  numero: z.coerce
+    .number({ error: "El número debe ser un número" })
+    .int("Debe ser un número entero")
+    .min(1, "Desde 1")
+    .max(50, "Máximo 50"),
+  contenido: z
+    .string()
+    .trim()
+    .min(1, "Escribe qué hay en la repisa")
+    .max(120, "Máximo 120 caracteres"),
+});

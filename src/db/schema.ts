@@ -1,4 +1,10 @@
-import { index, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  index,
+  integer,
+  sqliteTable,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/sqlite-core";
 
 export const productos = sqliteTable("productos", {
   id: integer("id").primaryKey({ autoIncrement: true }),
@@ -87,8 +93,58 @@ export const inventarioItems = sqliteTable(
   ],
 );
 
+// ubicaciones: cada zona de la farmacia (sala de ventas, bodega...) tiene su propio mapa
+export const zonas = sqliteTable("zonas", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  nombre: text("nombre").notNull().unique(),
+  creadaEn: integer("creada_en", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// mueble dibujado en el mapa de una zona. x, y, ancho y alto van en celdas de la cuadrícula
+export const estantes = sqliteTable(
+  "estantes",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    zonaId: integer("zona_id")
+      .notNull()
+      .references(() => zonas.id, { onDelete: "cascade" }),
+    nombre: text("nombre").notNull(), // ej: "Estante 1"
+    detalle: text("detalle"), // ej: "sala" → "Estante 1 (sala)"
+    tipo: text("tipo", {
+      enum: ["estante", "vitrina", "refrigerador", "meson"],
+    })
+      .notNull()
+      .default("estante"),
+    x: integer("x").notNull(),
+    y: integer("y").notNull(),
+    ancho: integer("ancho").notNull(),
+    alto: integer("alto").notNull(),
+  },
+  (t) => [index("idx_estantes_zona").on(t.zonaId)],
+);
+
+// cada repisa de un estante y lo que se guarda en ella (ej: "Oftálmicos")
+export const repisas = sqliteTable(
+  "repisas",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    estanteId: integer("estante_id")
+      .notNull()
+      .references(() => estantes.id, { onDelete: "cascade" }),
+    numero: integer("numero").notNull(),
+    contenido: text("contenido").notNull(),
+  },
+  // dos repisas del mismo estante no pueden tener el mismo número
+  (t) => [uniqueIndex("uq_repisas_estante_numero").on(t.estanteId, t.numero)],
+);
+
 export type Producto = typeof productos.$inferSelect;
 export type Vencimiento = typeof vencimientos.$inferSelect;
 export type Nota = typeof notas.$inferSelect;
 export type Importacion = typeof importaciones.$inferSelect;
 export type Inventario = typeof inventarios.$inferSelect;
+export type Zona = typeof zonas.$inferSelect;
+export type Estante = typeof estantes.$inferSelect;
+export type Repisa = typeof repisas.$inferSelect;
