@@ -124,3 +124,43 @@ export const esquemaRepisa = z.object({
     .min(1, "Escribe qué hay en la repisa")
     .max(120, "Máximo 120 caracteres"),
 });
+
+// tareas pendientes: periódica (se repite) o fortuita (una sola vez)
+const tituloTarea = z
+  .string()
+  .trim()
+  .min(1, "Escribe la tarea")
+  .max(100, "Máximo 100 caracteres");
+
+// vacío = sin detalle
+const detalleTarea = z
+  .string()
+  .trim()
+  .max(200, "Máximo 200 caracteres")
+  .transform((d) => d || null);
+
+export const esquemaTarea = z.discriminatedUnion("tipo", [
+  z.object({
+    tipo: z.literal("periodica"),
+    titulo: tituloTarea,
+    detalle: detalleTarea,
+    veces: z.coerce
+      .number({ error: "Las veces deben ser un número" })
+      .int("Debe ser un número entero")
+      .min(1, "Al menos 1 vez")
+      .max(20, "Máximo 20 veces"),
+    periodo: z.enum(["dia", "semana", "mes"], { error: "Elige cada cuánto" }),
+  }),
+  z.object({
+    tipo: z.literal("fortuita"),
+    titulo: tituloTarea,
+    detalle: detalleTarea,
+    // vacío = sin fecha límite
+    fechaLimite: z.union([
+      z.literal("").transform(() => null),
+      z.iso.date({ error: "La fecha no es válida" }),
+    ]),
+  }),
+]);
+
+export type DatosTarea = z.infer<typeof esquemaTarea>;

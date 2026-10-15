@@ -42,7 +42,7 @@ export const modulos: Modulo[] = [
     nombre: "Tareas",
     titulo: "Tareas pendientes",
     descripcion: "Pendientes del equipo",
-    activo: false,
+    activo: true,
     icono: "M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2",
     acento: {
       borde: "border-t-sage",

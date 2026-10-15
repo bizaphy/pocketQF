@@ -1,6 +1,7 @@
 // Botón que pide confirmación en un pop-up antes de ejecutar una acción que borra algo.
 // Igual que el de vencimientos, pero genérico: recibe la acción ya armada (ej: borrarZona.bind(null, id))
 // y, si se indica, a dónde ir después de borrar.
+// soloIcono: el botón muestra una X en vez del texto (el texto queda como tooltip y para lectores de pantalla).
 
 "use client";
 
@@ -14,12 +15,14 @@ export default function BotonConfirmar({
   descripcion,
   accion,
   irA,
+  soloIcono = false,
 }: {
   texto: string; // texto del botón y de la confirmación (ej: "Eliminar zona")
   titulo: string;
   descripcion: React.ReactNode;
   accion: () => Promise<{ ok: boolean; mensaje: string }>;
   irA?: string;
+  soloIcono?: boolean;
 }) {
   const router = useRouter();
   const dialogo = useRef<HTMLDialogElement>(null);
@@ -41,9 +44,29 @@ export default function BotonConfirmar({
       <button
         type="button"
         onClick={() => dialogo.current?.showModal()}
-        className="rounded-lg px-3 py-1.5 text-sm font-semibold text-strawberry transition-colors hover:bg-strawberry/10"
+        aria-label={soloIcono ? texto : undefined}
+        title={soloIcono ? texto : undefined}
+        className={
+          soloIcono
+            ? "flex size-8 shrink-0 items-center justify-center rounded-full text-steel transition-colors hover:bg-strawberry/10 hover:text-strawberry"
+            : "rounded-lg px-3 py-1.5 text-sm font-semibold text-strawberry transition-colors hover:bg-strawberry/10"
+        }
       >
-        {texto}
+        {soloIcono ? (
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            className="size-4"
+            aria-hidden
+          >
+            <path d="M6 6l12 12M18 6 6 18" />
+          </svg>
+        ) : (
+          texto
+        )}
       </button>
 
       <dialog

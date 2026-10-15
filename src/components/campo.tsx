@@ -10,7 +10,7 @@ export default function Campo({
   children: React.ReactNode;
 }) {
   return (
-    <label className="grid gap-1 text-sm font-medium">
+    <label className="grid min-w-0 gap-1 text-sm font-medium">
       {label}
       {children}
       {error && <span className="text-xs text-strawberry">{error}</span>}

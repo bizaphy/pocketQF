@@ -140,6 +140,38 @@ export const repisas = sqliteTable(
   (t) => [uniqueIndex("uq_repisas_estante_numero").on(t.estanteId, t.numero)],
 );
 
+// tareas pendientes del equipo.
+// periódica: se repite (ej: 2 veces por semana) y se marca hecha cada vez en tareaRegistros.
+// fortuita: se hace una sola vez (ej: enviar devolución al proveedor X) y queda con completadaEn.
+export const tareas = sqliteTable("tareas", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  tipo: text("tipo", { enum: ["periodica", "fortuita"] }).notNull(),
+  titulo: text("titulo").notNull(),
+  detalle: text("detalle"), // ej: "Proveedor X - Paracetamol lote L100"
+  veces: integer("veces"), // solo periódicas: cuántas veces por periodo
+  periodo: text("periodo", { enum: ["dia", "semana", "mes"] }), // solo periódicas
+  fechaLimite: text("fecha_limite"), // solo fortuitas, opcional. ISO: "YYYY-MM-DD"
+  completadaEn: integer("completada_en", { mode: "timestamp" }), // solo fortuitas. null: pendiente
+  creadaEn: integer("creada_en", { mode: "timestamp" })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+// cada vez que se hizo una tarea periódica
+export const tareaRegistros = sqliteTable(
+  "tarea_registros",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    tareaId: integer("tarea_id")
+      .notNull()
+      .references(() => tareas.id, { onDelete: "cascade" }),
+    hechaEn: integer("hecha_en", { mode: "timestamp" })
+      .notNull()
+      .$defaultFn(() => new Date()),
+  },
+  (t) => [index("idx_registros_tarea_fecha").on(t.tareaId, t.hechaEn)],
+);
+
 export type Producto = typeof productos.$inferSelect;
 export type Vencimiento = typeof vencimientos.$inferSelect;
 export type Nota = typeof notas.$inferSelect;
@@ -148,3 +180,4 @@ export type Inventario = typeof inventarios.$inferSelect;
 export type Zona = typeof zonas.$inferSelect;
 export type Estante = typeof estantes.$inferSelect;
 export type Repisa = typeof repisas.$inferSelect;
+export type Tarea = typeof tareas.$inferSelect;
