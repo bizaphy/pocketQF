@@ -3,16 +3,44 @@ import type { Metadata } from "next";
 import FormularioInventario from "@/components/formulario-inventario";
 import EncabezadoModulo from "@/components/encabezado-modulo";
 import { obtenerModulo } from "@/lib/modulos";
-import { formatearDiaFechaHora } from "@/lib/fechas";
+import { formatearDiaFechaHora, formatearFecha } from "@/lib/fechas";
 import { obtenerCategorias, obtenerInventarios } from "@/lib/inventario";
+import { claveDia, claveMes, leerMes } from "@/lib/calendario";
+import CalendarioInventarios, {
+  type InventarioDelDia,
+} from "@/components/calendario-inventarios";
 
 export const metadata: Metadata = { title: "Inventario" };
 
-export default async function InventarioPage() {
-  const [categorias, inventarios] = await Promise.all([
+export default async function InventarioPage({
+  searchParams,
+}: PageProps<"/inventario">) {
+  // ?mes=2026-10 elige el mes del calendario; ?dia=2026-10-14 filtra la tabla por ese día
+  const params = await searchParams;
+  const [categorias, todos] = await Promise.all([
     obtenerCategorias(),
     obtenerInventarios(),
   ]);
+
+  const hoy = new Date();
+  const mes = leerMes(
+    typeof params.mes === "string" ? params.mes : undefined,
+    hoy,
+  );
+  const dia = typeof params.dia === "string" ? params.dia : undefined;
+
+  // agrupa los inventarios por día local para marcarlos en el calendario
+  const porDia = new Map<string, InventarioDelDia[]>();
+  for (const inv of todos) {
+    const clave = claveDia(inv.creadoEn);
+    const lista = porDia.get(clave) ?? [];
+    lista.push({ id: inv.id, finalizado: inv.finalizadoEn !== null });
+    porDia.set(clave, lista);
+  }
+
+  const inventarios = dia
+    ? todos.filter((inv) => claveDia(inv.creadoEn) === dia)
+    : todos;
 
   return (
     <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
@@ -22,25 +50,59 @@ export default async function InventarioPage() {
         descripcion="Genera una lista de productos para contar hoy, a partir de la base de productos del Excel."
       />
 
-      <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
-        <h2 className="mb-4 font-semibold">Generar inventario del día</h2>
-        {categorias.length === 0 ? (
-          <p className="text-sm text-steel">
-            No hay productos cargados.{" "}
-            <Link href="/productos" className="underline">
-              Sube el Excel de productos
-            </Link>{" "}
-            para generar un inventario.
-          </p>
-        ) : (
-          <FormularioInventario categorias={categorias} />
-        )}
-      </section>
+      <div className="grid items-start gap-6 lg:grid-cols-[1fr_320px]">
+        <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
+          <h2 className="mb-4 font-semibold">Generar inventario del día</h2>
+          {categorias.length === 0 ? (
+            <p className="text-sm text-steel">
+              No hay productos cargados.{" "}
+              <Link href="/productos" className="underline">
+                Sube el Excel de productos
+              </Link>{" "}
+              para generar un inventario.
+            </p>
+          ) : (
+            <FormularioInventario categorias={categorias} />
+          )}
+        </section>
 
-      <section className="mt-8">
-        <h2 className="mb-3 font-semibold">Inventarios anteriores</h2>
+        <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
+          <h2 className="mb-3 font-semibold">Calendario</h2>
+          <CalendarioInventarios
+            mes={mes}
+            hoy={hoy}
+            porDia={porDia}
+            diaElegido={dia}
+          />
+        </section>
+      </div>
+
+      <section id="historial" className="mt-8 scroll-mt-6">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="font-semibold">
+            Inventarios anteriores
+            {dia && (
+              <span className="font-normal text-steel">
+                {" "}
+                · {formatearFecha(dia)}
+              </span>
+            )}
+          </h2>
+          {dia && (
+            <Link
+              href={`/inventario?mes=${claveMes(mes)}`}
+              className="text-sm font-medium text-deep-space underline underline-offset-2 hover:text-steel"
+            >
+              Ver todos
+            </Link>
+          )}
+        </div>
         {inventarios.length === 0 ? (
-          <p className="text-sm text-steel">Todavía no hay inventarios.</p>
+          <p className="text-sm text-steel">
+            {dia
+              ? "No hay inventarios ese día."
+              : "Todavía no hay inventarios."}
+          </p>
         ) : (
           <div className="overflow-x-auto rounded-xl border border-frosted bg-white shadow-sm">
             <table className="w-full text-left text-sm">
