@@ -16,7 +16,7 @@ export default async function PostIt() {
 
   return (
     <section className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_16rem]">
-      <article className="relative mx-auto flex aspect-square max-h-[36rem] w-full max-w-xl flex-col rounded-sm bg-white shadow-[0_10px_30px_-12px_rgba(29,53,87,0.35)] -rotate-[0.6deg]">
+      <article className="relative mx-auto flex aspect-square max-h-[36rem] w-full max-w-xl flex-col rounded-sm bg-white text-deep-space shadow-[0_10px_30px_-12px_rgba(29,53,87,0.6)] -rotate-[0.6deg]">
         {/* cinta adhesiva arriba, al centro */}
         <span
           className="absolute -top-3 left-1/2 h-6 w-28 -translate-x-1/2 rotate-2 bg-frosted/60"
@@ -54,7 +54,8 @@ export default async function PostIt() {
         <FormularioNota />
       </article>
 
-      <aside className="mx-auto w-full max-w-xl lg:max-w-none">
+      {/* panel claro: sobre el fondo intermedio del inicio el texto gris azulado no se lee directo */}
+      <aside className="mx-auto w-full max-w-xl rounded-xl bg-honeydew/85 p-4 lg:max-w-none">
         <h2 className="px-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-steel/80">
           Historial
         </h2>

@@ -34,7 +34,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         {/* En pantallas grandes la barra va a la izquierda; en móvil queda bajo el contenido */}
         <div className="flex flex-1 flex-col lg:flex-row">
-          <div className="min-w-0 flex-1 lg:order-2">{children}</div>
+          {/* flex-col: una página puede estirar su contenido a todo el alto con flex-1 (ej: fondo del inicio) */}
+          <div className="flex min-w-0 flex-1 flex-col lg:order-2">
+            {children}
+          </div>
           <BarraLateral />
         </div>
         <Toaster richColors position="top-center" />
