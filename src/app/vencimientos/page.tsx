@@ -34,12 +34,20 @@ export default async function VencimientosPage({
         titulo="Vencimientos"
         descripcion="Productos ordenados por fecha de vencimiento, del más próximo al más lejano."
       >
-        <Link
-          href="/vencimientos/nuevo"
-          className="rounded-lg bg-deep-space px-4 py-2 text-sm font-semibold text-honeydew hover:bg-deep-space/90"
-        >
-          + Agregar vencimiento
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Link
+            href="/vencimientos/reporte"
+            className="rounded-lg border border-deep-space px-4 py-2 text-sm font-semibold text-deep-space hover:bg-deep-space/5"
+          >
+            Reporte por mes
+          </Link>
+          <Link
+            href="/vencimientos/nuevo"
+            className="rounded-lg bg-deep-space px-4 py-2 text-sm font-semibold text-honeydew hover:bg-deep-space/90"
+          >
+            + Agregar vencimiento
+          </Link>
+        </div>
       </EncabezadoModulo>
 
       <ContadorVencimientos resumen={resumen} />
