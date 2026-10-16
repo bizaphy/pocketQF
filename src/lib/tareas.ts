@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import {
   and,
   asc,
+  count,
   desc,
   eq,
   gte,
@@ -98,6 +99,17 @@ export async function obtenerTareasFortuitas() {
     .limit(10)
     .all();
   return { pendientes, hechas };
+}
+
+// para la alerta del inicio: solo cuentan las fortuitas sin completar (las periódicas no avisan)
+export async function contarFortuitasPendientes() {
+  await connection();
+  const fila = db
+    .select({ n: count() })
+    .from(tareas)
+    .where(and(eq(tareas.tipo, "fortuita"), isNull(tareas.completadaEn)))
+    .get();
+  return fila?.n ?? 0;
 }
 
 export function insertarTarea(datos: DatosTarea) {

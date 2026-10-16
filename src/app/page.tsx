@@ -2,8 +2,11 @@ import Link from "next/link";
 import PostIt from "@/components/post-it";
 import IconoModulo from "@/components/icono-modulo";
 import { modulos } from "@/lib/modulos";
+import { contarFortuitasPendientes } from "@/lib/tareas";
 
-export default function Home() {
+export default async function Home() {
+  const fortuitasPendientes = await contarFortuitasPendientes();
+
   return (
     // fondo propio del inicio, de alto completo: sage al 25% sobre el honeydew de la página,
     // el mismo tono verdoso de las demás páginas pero un poco más oscuro
@@ -41,10 +44,29 @@ export default function Home() {
                 // border-t-4: franja superior con el color del módulo
                 className={`flex items-center gap-4 rounded-xl border border-t-4 border-frosted bg-white p-5 text-deep-space transition-shadow hover:shadow-md ${m.acento.borde}`}
               >
-                <IconoModulo modulo={m} />
+                <span className="relative shrink-0">
+                  <IconoModulo modulo={m} />
+                  {/* alerta en Tareas: globo rojo con la cantidad de fortuitas pendientes */}
+                  {m.href === "/tareas" && fortuitasPendientes > 0 && (
+                    <span
+                      className="absolute -right-1 -top-1 flex h-6 min-w-6 items-center justify-center rounded-full bg-strawberry px-1.5 text-xs font-bold tabular-nums text-white ring-2 ring-white"
+                      aria-hidden
+                    >
+                      {fortuitasPendientes}
+                    </span>
+                  )}
+                </span>
                 <div>
                   <h2 className="font-semibold">{m.titulo}</h2>
                   <p className="text-sm text-steel">{m.descripcion}</p>
+                  {m.href === "/tareas" && fortuitasPendientes > 0 && (
+                    <p className="mt-1 text-sm font-semibold text-strawberry">
+                      ! {fortuitasPendientes}{" "}
+                      {fortuitasPendientes === 1
+                        ? "tarea fortuita pendiente"
+                        : "tareas fortuitas pendientes"}
+                    </p>
+                  )}
                 </div>
               </Link>
             ) : (
