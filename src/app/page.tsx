@@ -11,7 +11,8 @@ export default async function Home() {
     // fondo propio del inicio, de alto completo: sage al 25% sobre el honeydew de la página,
     // el mismo tono verdoso de las demás páginas pero un poco más oscuro
     <div className="flex-1 bg-sage/25">
-      <main className="mx-auto w-full max-w-5xl px-4 py-10">
+      {/* pb-20: espacio bajo el post-it para que no quede junto al pie de página */}
+      <main className="mx-auto w-full max-w-5xl px-4 pt-10 pb-20">
         <h1 className="text-3xl font-bold">PocketQF</h1>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {modulos.map((m) =>

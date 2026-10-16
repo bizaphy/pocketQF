@@ -72,7 +72,7 @@ const ERRORES = [
 
 export default function GuiaExcelPage() {
   return (
-    <main className="mx-auto w-full min-w-0 max-w-3xl px-4 py-10">
+    <main className="mx-auto w-full min-w-0 max-w-3xl px-4 pt-10 pb-20">
       <EncabezadoModulo
         modulo={obtenerModulo("/productos")}
         titulo="Cómo armar el Excel"

@@ -24,7 +24,7 @@ export default async function FichaPage({
   const total = porNombre.length + aMano.length;
 
   return (
-    <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
+    <main className="mx-auto w-full min-w-0 max-w-5xl px-4 pt-10 pb-20">
       <Link href="/pocket-qf" className="text-sm text-steel hover:underline">
         ← Volver a Pocket QF
       </Link>

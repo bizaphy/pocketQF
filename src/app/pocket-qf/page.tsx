@@ -27,7 +27,7 @@ export default async function PocketQFPage() {
   });
 
   return (
-    <main className="mx-auto w-full min-w-0 max-w-5xl px-4 py-10">
+    <main className="mx-auto w-full min-w-0 max-w-5xl px-4 pt-10 pb-20">
       <EncabezadoModulo
         modulo={obtenerModulo("/pocket-qf")}
         titulo="Pocket QF"
