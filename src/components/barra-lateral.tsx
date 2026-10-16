@@ -29,7 +29,7 @@ const enlaces = [
 
 export default function BarraLateral() {
   return (
-    <aside className="w-full shrink-0 border-t border-frosted/70 bg-white/60 lg:w-64 lg:border-t-0 lg:border-r">
+    <aside className="w-full shrink-0 print:hidden border-t border-frosted/70 bg-white/60 lg:w-64 lg:border-t-0 lg:border-r">
       {/* sticky: en escritorio la barra queda fija al hacer scroll */}
       <nav className="px-3 py-6 lg:sticky lg:top-0 lg:py-10">
         <h2 className="px-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-steel/80">

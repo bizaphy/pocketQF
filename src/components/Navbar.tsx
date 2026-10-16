@@ -11,7 +11,7 @@ export default function Navbar() {
   const pathname = usePathname(); // ej: "/vencimientos"
 
   return (
-    <nav className="bg-deep-space text-honeydew">
+    <nav className="bg-deep-space text-honeydew print:hidden">
       <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
         <Link href="/" className="font-bold">
           PocketQF
