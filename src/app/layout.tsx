@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import BarraLateral from "@/components/barra-lateral";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Toaster } from "sonner";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+// Switzer no está en Google Fonts: los archivos vienen de Fontshare y se guardan en app/fonts
+const switzer = localFont({
+  src: [
+    { path: "./fonts/Switzer-Regular.woff2", weight: "400" },
+    { path: "./fonts/Switzer-Medium.woff2", weight: "500" },
+    { path: "./fonts/Switzer-Semibold.woff2", weight: "600" },
+    { path: "./fonts/Switzer-Bold.woff2", weight: "700" },
+  ],
+  variable: "--font-switzer",
 });
 
 const geistMono = Geist_Mono({
@@ -28,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${switzer.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
