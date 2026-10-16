@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/footer";
 import BarraLateral from "@/components/barra-lateral";
 import { Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <BarraLateral />
         </div>
+        <Footer />
         <Toaster richColors position="bottom-center" />
       </body>
     </html>
