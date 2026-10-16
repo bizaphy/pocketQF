@@ -11,7 +11,7 @@
   --color-steel: #457b9d; /* texto secundario */
   --color-deep-space: #1d3557; /* texto principal y encabezados */
   --color-sage: #2a9d8f; /* acento del módulo de tareas */
-  --color-sage-oscuro: #1b675e; /* tarjeta destacada del inicio (con texto blanco) */
+  --color-azul-destacado: #264a73; /* tarjeta destacada del inicio (con texto blanco), un poco más claro que el menú */
   --color-lavender: #7b6cb5; /* acento del módulo Pocket QF */
   --color-moss: #6a994e; /* acento del módulo de ubicaciones */
 }

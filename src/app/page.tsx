@@ -13,11 +13,11 @@ export default function Home() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {modulos.map((m) =>
             m.activo && m.destacado ? (
-              // tarjeta destacada: todo el ancho, fondo verde oscuro (el tono del fondo del inicio) y texto blanco
+              // tarjeta destacada: todo el ancho, fondo azul oscuro (parecido al menú) y texto blanco
               <Link
                 key={m.href}
                 href={m.href}
-                className="group relative flex items-center gap-5 overflow-hidden rounded-xl bg-sage-oscuro p-6 text-white shadow-md transition-[box-shadow,filter] hover:shadow-xl hover:brightness-110 sm:col-span-2"
+                className="group relative flex items-center gap-5 overflow-hidden rounded-xl bg-azul-destacado p-6 text-white shadow-md transition-[box-shadow,filter] hover:shadow-xl hover:brightness-110 sm:col-span-2"
               >
                 <IconoModulo modulo={m} tamano={72} claro />
                 <div className="min-w-0 flex-1">
