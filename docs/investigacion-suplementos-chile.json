@@ -1,0 +1,1880 @@
+{
+  "titulo": "Suplementos de venta habitual en Chile: usos, dosis típicas y estatus regulatorio",
+  "fecha": "2026-10-15",
+  "version": 1,
+  "alcance": "Adultos sanos no embarazadas. Dosis orales típicas descritas en la literatura y en fichas de referencia (NIH ODS, NCCIH, ISSN). No incluye dosis pediátricas ni esquemas de tratamiento de enfermedades, que corresponden a indicación médica.",
+  "advertencia": "Informe de consulta interna para el equipo de farmacia. No reemplaza el folleto del producto, la indicación médica ni la consulta con el químico farmacéutico. Las dosis son rangos de referencia, no recomendaciones individuales. El estatus regulatorio en Chile depende del registro de cada producto: verificar siempre en el envase (registro ISP 'F-xxxx' = medicamento; resolución SEREMI = alimento/suplemento).",
+  "como_leer": {
+    "evidencia": {
+      "alta": "Varios ensayos clínicos controlados y metaanálisis consistentes.",
+      "moderada": "Ensayos controlados con resultados mayormente favorables, pero pequeños, heterogéneos o con efecto modesto.",
+      "baja": "Pocos ensayos, resultados mixtos o estudios de baja calidad.",
+      "insuficiente": "Principalmente estudios de laboratorio, en animales o tradicionales; sin evidencia clínica sólida en personas."
+    },
+    "unidades": "µg = microgramos (mcg). Vitamina D: 1 µg = 40 UI. 'Elemental' = cantidad del mineral en sí, no del compuesto (ej: 500 mg de citrato de magnesio aportan solo ~80 mg de magnesio).",
+    "campos_pocket_qf": "Cada suplemento trae 'terminos' (para asociar productos por nombre) y 'ficha' con los tres textos de Pocket QF (indicaciones, efectosSecundarios, observaciones), listos para cargarse como fichas. 'excluir' lista palabras que, si aparecen en el nombre del producto, impiden la asociación (ej: pomadas de óxido de zinc)."
+  },
+  "marco_regulatorio_chile": {
+    "resumen": "En Chile un mismo ingrediente puede venderse como suplemento alimentario (regulado por el Reglamento Sanitario de los Alimentos y fiscalizado por las SEREMI de Salud) o como medicamento (registro sanitario del ISP). Lo que lo define es la dosis y el ingrediente: si supera los límites para suplementos o si el ISP calificó el ingrediente con régimen de medicamento, debe tener registro ISP.",
+    "normas": [
+      {
+        "norma": "Decreto Supremo 977/1996, Reglamento Sanitario de los Alimentos (RSA), artículos 534 a 540",
+        "contenido": "Define suplemento alimentario (art. 534): producto para complementar la dieta, que puede contener vitaminas, minerales, aminoácidos, lípidos, fibra y otros componentes presentes naturalmente en alimentos. Prohíbe atribuirles propiedades terapéuticas.",
+        "fuente": "minsal-rsa-2026"
+      },
+      {
+        "norma": "Resolución Exenta 394/2002 del Minsal (modificada por Res. Ex. 730/2003 y 1225/2004)",
+        "contenido": "Fija los límites mínimos (por porción) y máximos (diarios) de vitaminas y minerales en suplementos. Los minerales pueden excederse hasta 25 % y las vitaminas hasta 40 % para compensar la degradación durante la vida útil. Las vitaminas o minerales sin límite definido no pueden agregarse a suplementos.",
+        "fuente": "minsal-res-394-2002"
+      },
+      {
+        "norma": "Proyecto de resolución sobre sustancias en suplementos (consulta pública Minsal, 2019)",
+        "contenido": "Propone nuevos límites, entre ellos vitamina D máx. 40 µg/día, vitamina B12 máx. 28,8 µg, creatina 500-5.000 mg/día, coenzima Q10 10-400 mg/día, cafeína máx. 500 mg/día y ginseng (Panax) máx. 1 g/día de raíz. Es un PROYECTO: no se pudo confirmar en esta investigación que esté vigente; usar solo como referencia.",
+        "fuente": "minsal-proyecto-sustancias-2019"
+      },
+      {
+        "norma": "Calificaciones del ISP de régimen de control de medicamento",
+        "contenido": "El ISP ha resuelto que ciertos ingredientes vegetales deben registrarse como producto farmacéutico, por lo que sin registro ISP no pueden venderse como alimento. Entre ellos (según listado de fuente secundaria): ashwagandha (Res. Ex. 2024/2013), cúrcuma en cápsulas (Res. Ex. 1393/2019), ginkgo biloba (Res. Ex. 2213/2012), cardo mariano (Res. Ex. 1528/2016), 5-HTP (Res. Ex. 3309/2017) y rhodiola (Res. Ex. 1928/2017).",
+        "fuente": "isp-res-2024-2013, control-ciudadano-listado-isp"
+      },
+      {
+        "norma": "Fortificación con vitamina D3 (modificación al RSA, vigente desde el 19-06-2026)",
+        "contenido": "Leche líquida, leche en polvo de consumo directo y harina de trigo deben fortificarse con vitamina D3. Relevante al estimar la ingesta total de vitamina D de un paciente.",
+        "fuente": "thefoodtech-rsa-2026"
+      }
+    ],
+    "limites_suplementos_res_394": {
+      "nota": "Cantidad máxima diaria permitida en suplementos alimentarios (sin contar la tolerancia de 25 % en minerales y 40 % en vitaminas). DDR = dosis diaria de referencia usada en Chile para el rotulado.",
+      "vitaminas": [
+        {
+          "nutriente": "Vitamina A",
+          "unidad": "µg",
+          "minimo_por_porcion": 200,
+          "maximo_diario": 1000,
+          "ddr": 800
+        },
+        {
+          "nutriente": "Vitamina C",
+          "unidad": "mg",
+          "minimo_por_porcion": 60,
+          "maximo_diario": 1000,
+          "ddr": 60
+        },
+        {
+          "nutriente": "Vitamina D",
+          "unidad": "µg",
+          "minimo_por_porcion": 2,
+          "maximo_diario": 20,
+          "ddr": 5,
+          "equivalente_ui": "máx. 800 UI"
+        },
+        {
+          "nutriente": "Vitamina E",
+          "unidad": "mg",
+          "minimo_por_porcion": 20,
+          "maximo_diario": 500,
+          "ddr": 20
+        },
+        {
+          "nutriente": "Vitamina B1",
+          "unidad": "mg",
+          "minimo_por_porcion": 0.7,
+          "maximo_diario": 6,
+          "ddr": 1.4
+        },
+        {
+          "nutriente": "Vitamina B2",
+          "unidad": "mg",
+          "minimo_por_porcion": 0.8,
+          "maximo_diario": 6,
+          "ddr": 1.6
+        },
+        {
+          "nutriente": "Niacina",
+          "unidad": "mg",
+          "minimo_por_porcion": 4.5,
+          "maximo_diario": 20,
+          "ddr": 18
+        },
+        {
+          "nutriente": "Vitamina B6",
+          "unidad": "mg",
+          "minimo_por_porcion": 1,
+          "maximo_diario": 50,
+          "ddr": 2
+        },
+        {
+          "nutriente": "Folato",
+          "unidad": "µg",
+          "minimo_por_porcion": 100,
+          "maximo_diario": 500,
+          "ddr": 200
+        },
+        {
+          "nutriente": "Vitamina B12",
+          "unidad": "µg",
+          "minimo_por_porcion": 1,
+          "maximo_diario": 12,
+          "ddr": 1
+        },
+        {
+          "nutriente": "Ácido pantoténico",
+          "unidad": "mg",
+          "minimo_por_porcion": 5,
+          "maximo_diario": 25,
+          "ddr": 10
+        },
+        {
+          "nutriente": "Biotina",
+          "unidad": "µg",
+          "minimo_por_porcion": 30,
+          "maximo_diario": 150,
+          "ddr": 300
+        },
+        {
+          "nutriente": "Colina",
+          "unidad": "mg",
+          "minimo_por_porcion": 275,
+          "maximo_diario": 2000,
+          "ddr": 550
+        },
+        {
+          "nutriente": "Vitamina K",
+          "unidad": "µg",
+          "minimo_por_porcion": 80,
+          "maximo_diario": 600,
+          "ddr": 80
+        },
+        {
+          "nutriente": "Betacaroteno",
+          "unidad": "mg",
+          "minimo_por_porcion": 5,
+          "maximo_diario": 15,
+          "ddr": null
+        }
+      ],
+      "minerales": [
+        {
+          "nutriente": "Calcio",
+          "unidad": "mg",
+          "minimo_por_porcion": 400,
+          "maximo_diario": 1600,
+          "ddr": 800
+        },
+        {
+          "nutriente": "Cromo (Cr+3)",
+          "unidad": "µg",
+          "minimo_por_porcion": 17.5,
+          "maximo_diario": 200,
+          "ddr": 35
+        },
+        {
+          "nutriente": "Cobre",
+          "unidad": "mg",
+          "minimo_por_porcion": 0.5,
+          "maximo_diario": 3.3,
+          "ddr": 2
+        },
+        {
+          "nutriente": "Yodo",
+          "unidad": "µg",
+          "minimo_por_porcion": 30,
+          "maximo_diario": 150,
+          "ddr": 150
+        },
+        {
+          "nutriente": "Hierro",
+          "unidad": "mg",
+          "minimo_por_porcion": 3.5,
+          "maximo_diario": 25,
+          "ddr": 14
+        },
+        {
+          "nutriente": "Magnesio",
+          "unidad": "mg",
+          "minimo_por_porcion": 75,
+          "maximo_diario": 400,
+          "ddr": 300
+        },
+        {
+          "nutriente": "Manganeso",
+          "unidad": "mg",
+          "minimo_por_porcion": 0.5,
+          "maximo_diario": 6,
+          "ddr": 2
+        },
+        {
+          "nutriente": "Molibdeno",
+          "unidad": "µg",
+          "minimo_por_porcion": 25,
+          "maximo_diario": 600,
+          "ddr": 50
+        },
+        {
+          "nutriente": "Fósforo",
+          "unidad": "mg",
+          "minimo_por_porcion": 400,
+          "maximo_diario": 1600,
+          "ddr": 800
+        },
+        {
+          "nutriente": "Zinc",
+          "unidad": "mg",
+          "minimo_por_porcion": 3.8,
+          "maximo_diario": 20,
+          "ddr": 15
+        },
+        {
+          "nutriente": "Selenio",
+          "unidad": "µg",
+          "minimo_por_porcion": 17.5,
+          "maximo_diario": 200,
+          "ddr": 70
+        }
+      ]
+    },
+    "consecuencias_practicas": [
+      "Vitamina D sobre 800 UI (20 µg) diarias, B12 sobre 12 µg o biotina sobre 150 µg exceden el límite de suplemento: esos productos se comercializan como medicamentos con registro ISP. Ej: colecalciferol 50.000 UI en cápsulas blandas (Vidyn, Bonavid, Zafarol), con condición de venta receta simple.",
+      "La melatonina tiene registros ISP como medicamento (indicada para insomnio primario de corto plazo); no es un suplemento alimentario en Chile.",
+      "Ashwagandha y cúrcuma en cápsulas requieren registro ISP; un producto sin registro ISP no puede venderse legalmente en Chile.",
+      "Un suplemento alimentario no puede declarar que trata, cura o previene enfermedades."
+    ]
+  },
+  "suplementos": [
+    {
+      "id": "vitamina-d",
+      "nombre": "Vitamina D3 (colecalciferol)",
+      "terminos": [
+        "colecalciferol",
+        "vitamina d",
+        "vitamina d3",
+        "vit d3",
+        "vit d"
+      ],
+      "categoria": "vitamina",
+      "estatus_chile": {
+        "clasificacion": "Suplemento hasta 20 µg (800 UI) diarios; sobre eso, medicamento con registro ISP.",
+        "limite_suplemento": "20 µg/día (Res. 394/2002); el proyecto de 2019 propone 40 µg/día.",
+        "nota": "Dosis de 50.000 UI se venden como medicamento con receta. Desde junio de 2026 la leche y la harina de trigo vienen fortificadas con D3."
+      },
+      "usos": [
+        {
+          "uso": "Prevenir y corregir déficit de vitamina D (poca exposición solar, adultos mayores, piel oscura, obesidad, malabsorción)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Salud ósea junto con calcio en personas con déficit o riesgo de osteoporosis",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Prevención de caídas y fracturas en población general sin déficit",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "600 UI (15 µg) de 19 a 70 años; 800 UI (20 µg) desde los 71 años (NIH ODS).",
+        "suplementacion_habitual": "800-2.000 UI/día.",
+        "limite_superior": "4.000 UI (100 µg)/día (UL, NIH ODS).",
+        "tratamiento_deficit": "Esquemas con dosis altas (ej: 50.000 UI semanales por algunas semanas) solo con indicación médica y control de niveles de 25(OH)D."
+      },
+      "como_tomar": "Con una comida que tenga grasa (es liposoluble). Diaria o semanal, según indicación.",
+      "formas": [
+        {
+          "forma": "D3 (colecalciferol)",
+          "detalle": "La más usada; sube más los niveles en dosis únicas grandes. Existe D3 de origen vegetal (liquen)."
+        },
+        {
+          "forma": "D2 (ergocalciferol)",
+          "detalle": "De origen vegetal; en dosis diarias se comporta parecido a D3."
+        }
+      ],
+      "efectos_secundarios": [
+        "Raros a dosis habituales.",
+        "En exceso: hipercalcemia (náuseas, vómitos, sed, poliuria, confusión), cálculos renales."
+      ],
+      "precauciones": [
+        "Hipercalcemia, sarcoidosis u otras enfermedades granulomatosas, cálculos renales, hiperparatiroidismo.",
+        "Sumar toda la vitamina D que toma la persona (multivitamínicos, alimentos fortificados)."
+      ],
+      "interacciones": [
+        "Diuréticos tiazídicos: mayor riesgo de hipercalcemia.",
+        "Corticoides, orlistat, colestiramina y algunos anticonvulsivantes (fenitoína, fenobarbital): reducen su efecto.",
+        "Digoxina: la hipercalcemia aumenta su toxicidad."
+      ],
+      "ficha": {
+        "indicaciones": "Prevenir o corregir el déficit de vitamina D (poca exposición al sol, adultos mayores, obesidad, malabsorción). Salud ósea junto con calcio en personas con déficit.",
+        "efectosSecundarios": "Raros a dosis habituales. En exceso: hipercalcemia (náuseas, vómitos, sed, orinar mucho, confusión) y cálculos renales.",
+        "observaciones": "Dosis habitual 800-2.000 UI/día; máximo seguro 4.000 UI/día. Tomar con comida con grasa. En Chile, como suplemento solo hasta 800 UI/día: las dosis mayores (ej: 50.000 UI) son medicamento con receta. Precaución con diuréticos tiazídicos, hipercalcemia y cálculos renales."
+      },
+      "fuentes": [
+        "nih-ods-vitamina-d",
+        "minsal-res-394-2002",
+        "vademecum-colecalciferol-50000"
+      ],
+      "excluir": []
+    },
+    {
+      "id": "magnesio",
+      "nombre": "Magnesio",
+      "terminos": [
+        "magnesio",
+        "citrato de magnesio",
+        "cloruro de magnesio",
+        "bisglicinato de magnesio",
+        "glicinato de magnesio",
+        "oxido de magnesio",
+        "malato de magnesio",
+        "treonato de magnesio"
+      ],
+      "categoria": "mineral",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "400 mg/día de magnesio elemental (Res. 394/2002).",
+        "nota": "El cloruro de magnesio también se vende como polvo para disolver."
+      },
+      "usos": [
+        {
+          "uso": "Estreñimiento ocasional (óxido, citrato, sulfato: efecto osmótico)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Corregir ingesta baja o hipomagnesemia leve (ej: uso prolongado de omeprazol u otros IBP, diuréticos)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Prevención de migraña (dosis de 400-600 mg, sobre el límite de suplemento: con indicación médica)",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Calambres musculares",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Sueño y ansiedad",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "310-320 mg (mujeres) y 400-420 mg (hombres), contando alimentos (NIH ODS).",
+        "suplementacion_habitual": "100-350 mg/día de magnesio ELEMENTAL, idealmente repartido en 1-2 tomas.",
+        "limite_superior": "350 mg/día desde suplementos (UL, NIH ODS); sobre eso es frecuente la diarrea.",
+        "nota": "Revisar en la etiqueta los mg de magnesio elemental, no los mg del compuesto."
+      },
+      "como_tomar": "Con comida para mejorar la tolerancia digestiva. Para dormir suele tomarse en la noche.",
+      "formas": [
+        {
+          "forma": "Óxido de magnesio",
+          "magnesio_elemental": "~60 %",
+          "absorcion": "Baja",
+          "efecto_laxante": "Alto",
+          "uso_preferente": "Estreñimiento; antiácido. Mucho magnesio por comprimido pero se absorbe poco."
+        },
+        {
+          "forma": "Citrato de magnesio",
+          "magnesio_elemental": "~11-16 %",
+          "absorcion": "Buena",
+          "efecto_laxante": "Moderado a alto en dosis altas",
+          "uso_preferente": "Corregir déficit; útil si además hay tendencia al estreñimiento."
+        },
+        {
+          "forma": "Cloruro de magnesio",
+          "magnesio_elemental": "~12 %",
+          "absorcion": "Buena (sal soluble)",
+          "efecto_laxante": "Moderado",
+          "uso_preferente": "Corregir déficit. Sabor amargo; se vende en polvo o comprimidos."
+        },
+        {
+          "forma": "Bisglicinato (glicinato) de magnesio",
+          "magnesio_elemental": "~14 %",
+          "absorcion": "Buena",
+          "efecto_laxante": "Bajo",
+          "uso_preferente": "Personas con estómago sensible o que necesitan dosis mayores; muy usado para sueño y ansiedad (la ventaja específica de esta forma tiene poca evidencia)."
+        },
+        {
+          "forma": "Malato de magnesio",
+          "magnesio_elemental": "~15 %",
+          "absorcion": "Buena",
+          "efecto_laxante": "Bajo",
+          "uso_preferente": "Bien tolerado; se promociona para fatiga y dolor muscular (evidencia baja)."
+        },
+        {
+          "forma": "L-treonato de magnesio",
+          "magnesio_elemental": "~7-8 %",
+          "absorcion": "Buena; pasa mejor al cerebro en estudios preliminares",
+          "efecto_laxante": "Bajo",
+          "uso_preferente": "Se promociona para memoria y cognición (evidencia preliminar). Aporta poco magnesio por dosis: no sirve para corregir un déficit."
+        },
+        {
+          "forma": "Sulfato de magnesio",
+          "magnesio_elemental": "~10 %",
+          "absorcion": "Baja por vía oral",
+          "efecto_laxante": "Alto",
+          "uso_preferente": "Laxante (sal de Epsom); uso tópico en baños."
+        }
+      ],
+      "efectos_secundarios": [
+        "Diarrea, cólicos, náuseas (sobre todo óxido y citrato).",
+        "Hipermagnesemia (hipotensión, debilidad, arritmias) casi solo con insuficiencia renal o dosis muy altas."
+      ],
+      "precauciones": [
+        "Insuficiencia renal: evitar o usar solo con indicación médica.",
+        "Miastenia gravis, bloqueos cardíacos."
+      ],
+      "interacciones": [
+        "Antibióticos tetraciclinas y quinolonas (ciprofloxacino): tomarlos 2 h antes o 4-6 h después del magnesio.",
+        "Bisfosfonatos (alendronato): separar al menos 2 h.",
+        "Levotiroxina: separar 4 h.",
+        "Omeprazol y otros IBP a largo plazo, y diuréticos de asa o tiazídicos: pueden bajar el magnesio."
+      ],
+      "ficha": {
+        "indicaciones": "Corregir ingesta baja de magnesio (ej: uso prolongado de omeprazol o diuréticos). Estreñimiento ocasional (óxido y citrato). Apoyo en prevención de migraña con indicación médica.",
+        "efectosSecundarios": "Diarrea, cólicos y náuseas, sobre todo con óxido y citrato. Bisglicinato y malato son mejor tolerados.",
+        "observaciones": "Dosis habitual 100-350 mg/día de magnesio ELEMENTAL (revisar etiqueta). Formas: óxido (laxante, poca absorción), citrato (buena absorción, algo laxante), cloruro (buena absorción, amargo), bisglicinato (bien tolerado, para estómago sensible), L-treonato (poco magnesio por dosis, se promociona para memoria). Separar de quinolonas, tetraciclinas, levotiroxina y alendronato. Evitar en insuficiencia renal."
+      },
+      "fuentes": [
+        "nih-ods-magnesio",
+        "minsal-res-394-2002",
+        "pmc-biodisponibilidad-magnesio"
+      ],
+      "excluir": ["aluminio"]
+    },
+    {
+      "id": "selenio",
+      "nombre": "Selenio",
+      "terminos": ["selenio", "selenometionina", "selenito"],
+      "categoria": "mineral",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "200 µg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Tiroiditis autoinmune (Hashimoto): baja los anticuerpos anti-TPO; beneficio clínico poco claro",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Corregir déficit (raro con dieta variada)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Prevención de cáncer",
+          "evidencia": "baja",
+          "nota": "El ensayo SELECT (200 µg/día) no previno el cáncer de próstata y sugirió más riesgo de diabetes tipo 2."
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "55 µg (NIH ODS).",
+        "suplementacion_habitual": "50-200 µg/día.",
+        "limite_superior": "400 µg/día (UL). El margen entre dosis útil y tóxica es estrecho.",
+        "nota": "Una nuez de Brasil puede aportar 60-90 µg."
+      },
+      "como_tomar": "Con o sin comida.",
+      "formas": [
+        {
+          "forma": "Selenometionina / levadura enriquecida",
+          "detalle": "Orgánica, mejor absorción; se acumula más en los tejidos."
+        },
+        {
+          "forma": "Selenito o selenato de sodio",
+          "detalle": "Inorgánica; menor acumulación."
+        }
+      ],
+      "efectos_secundarios": [
+        "En exceso (selenosis): aliento a ajo, sabor metálico, caída de pelo, uñas quebradizas, diarrea, irritabilidad, neuropatía."
+      ],
+      "precauciones": [
+        "No combinar varios productos con selenio (multivitamínicos, nueces de Brasil) sin sumar las dosis.",
+        "Diabetes tipo 2: posible aumento de riesgo con dosis altas mantenidas."
+      ],
+      "interacciones": ["Cisplatino: puede bajar los niveles de selenio."],
+      "ficha": {
+        "indicaciones": "Corregir déficit de selenio. Apoyo en tiroiditis autoinmune (Hashimoto), donde baja los anticuerpos aunque el beneficio clínico es poco claro.",
+        "efectosSecundarios": "En exceso: aliento a ajo, sabor metálico, caída de pelo, uñas quebradizas, diarrea.",
+        "observaciones": "Dosis habitual 50-200 µg/día; máximo 400 µg/día. Margen estrecho: sumar multivitamínicos y nueces de Brasil (60-90 µg cada una). No previene el cáncer; dosis altas mantenidas podrían aumentar el riesgo de diabetes."
+      },
+      "fuentes": ["nih-ods-selenio", "minsal-res-394-2002"],
+      "excluir": []
+    },
+    {
+      "id": "zinc",
+      "nombre": "Zinc",
+      "terminos": [
+        "zinc",
+        "gluconato de zinc",
+        "picolinato de zinc",
+        "citrato de zinc"
+      ],
+      "categoria": "mineral",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "20 mg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Corregir déficit (vegetarianos, malabsorción, alcoholismo)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Acortar el resfrío común con pastillas para chupar iniciadas en las primeras 24 h",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Cicatrización y piel (acné) en personas con déficit",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "8 mg (mujeres) y 11 mg (hombres) (NIH ODS).",
+        "suplementacion_habitual": "8-25 mg/día.",
+        "limite_superior": "40 mg/día (UL).",
+        "nota": "En resfrío se han usado pastillas de acetato o gluconato que suman ≥75 mg/día por pocos días."
+      },
+      "como_tomar": "Con comida si produce náuseas.",
+      "formas": [
+        {
+          "forma": "Gluconato, citrato, picolinato, acetato, sulfato",
+          "detalle": "Diferencias de absorción pequeñas; el sulfato da más molestias gástricas."
+        }
+      ],
+      "efectos_secundarios": [
+        "Náuseas, sabor metálico, dolor abdominal.",
+        "Uso prolongado sobre 40 mg/día: déficit de cobre (anemia, neuropatía)."
+      ],
+      "precauciones": ["No usar zinc nasal: se asocia a pérdida del olfato."],
+      "interacciones": [
+        "Quinolonas y tetraciclinas: separar 2 h antes o 4-6 h después.",
+        "Penicilamina: separar 2 h.",
+        "Diuréticos tiazídicos: aumentan la pérdida de zinc."
+      ],
+      "ficha": {
+        "indicaciones": "Corregir déficit de zinc. Acortar el resfrío si se empieza en las primeras 24 h (pastillas para chupar).",
+        "efectosSecundarios": "Náuseas, sabor metálico, dolor abdominal. Uso prolongado en dosis altas produce déficit de cobre.",
+        "observaciones": "Dosis habitual 8-25 mg/día; máximo 40 mg/día. Separar de quinolonas y tetraciclinas. No usar zinc nasal (pérdida del olfato)."
+      },
+      "fuentes": ["nih-ods-zinc", "minsal-res-394-2002"],
+      "excluir": ["oxido de zinc", "shampoo"]
+    },
+    {
+      "id": "hierro",
+      "nombre": "Hierro",
+      "terminos": [
+        "hierro",
+        "sulfato ferroso",
+        "fumarato ferroso",
+        "bisglicinato ferroso",
+        "hierro polimaltosado"
+      ],
+      "categoria": "mineral",
+      "estatus_chile": {
+        "clasificacion": "Suplemento hasta 25 mg/día; las dosis de tratamiento de anemia son medicamento.",
+        "limite_suplemento": "25 mg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Prevenir y tratar déficit de hierro y anemia ferropénica (confirmada con exámenes)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Embarazo, menstruación abundante, donantes de sangre frecuentes",
+          "evidencia": "alta"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "8 mg (hombres y mujeres mayores de 50) y 18 mg (mujeres de 19 a 50) (NIH ODS).",
+        "suplementacion_habitual": "14-25 mg/día de hierro elemental como prevención.",
+        "limite_superior": "45 mg/día (UL) sin indicación médica.",
+        "tratamiento_deficit": "60-120 mg/día de hierro elemental con indicación médica; tomarlo en días alternos puede mejorar la absorción y la tolerancia."
+      },
+      "como_tomar": "En ayunas con vitamina C o jugo de naranja. Si produce molestias, con comida. Lejos de té, café, lácteos y calcio.",
+      "formas": [
+        {
+          "forma": "Sulfato ferroso",
+          "detalle": "Barato y eficaz; más molestias digestivas. ~20 % de hierro elemental."
+        },
+        {
+          "forma": "Fumarato ferroso",
+          "detalle": "~33 % de hierro elemental."
+        },
+        {
+          "forma": "Bisglicinato ferroso",
+          "detalle": "Mejor tolerado; menos estreñimiento."
+        },
+        {
+          "forma": "Hierro polimaltosado",
+          "detalle": "Bien tolerado; absorción más variable."
+        }
+      ],
+      "efectos_secundarios": [
+        "Estreñimiento, náuseas, dolor abdominal.",
+        "Heces negras (esperable, no es sangrado)."
+      ],
+      "precauciones": [
+        "No suplementar sin déficit confirmado: puede ocultar sangrados o empeorar hemocromatosis.",
+        "Intoxicación grave en niños: guardar fuera de su alcance."
+      ],
+      "interacciones": [
+        "Levotiroxina, quinolonas y tetraciclinas: separar al menos 2-4 h.",
+        "Calcio, antiácidos y omeprazol u otros IBP: reducen su absorción."
+      ],
+      "ficha": {
+        "indicaciones": "Prevenir o tratar déficit de hierro y anemia ferropénica confirmada con exámenes. Embarazo y menstruación abundante.",
+        "efectosSecundarios": "Estreñimiento, náuseas, dolor abdominal. Heces negras (esperable).",
+        "observaciones": "Prevención 14-25 mg/día de hierro elemental; tratamiento de anemia 60-120 mg/día solo con indicación médica (días alternos se tolera mejor). Tomar con vitamina C, lejos de té, café, lácteos y calcio. Separar de levotiroxina y quinolonas. Bisglicinato es mejor tolerado. Peligroso para niños."
+      },
+      "fuentes": ["nih-ods-hierro", "minsal-res-394-2002"],
+      "excluir": []
+    },
+    {
+      "id": "calcio",
+      "nombre": "Calcio",
+      "terminos": ["calcio", "carbonato de calcio", "citrato de calcio"],
+      "categoria": "mineral",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "1.600 mg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Completar una ingesta baja de calcio (poca leche y derivados)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Osteoporosis, junto con vitamina D y el tratamiento indicado",
+          "evidencia": "moderada"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "1.000 mg (1.200 mg mujeres desde los 51 y todos desde los 71) contando alimentos (NIH ODS).",
+        "suplementacion_habitual": "500-1.000 mg/día, solo lo que falte para completar la dieta.",
+        "limite_superior": "2.500 mg/día (19-50 años) y 2.000 mg/día (desde los 51), contando alimentos.",
+        "nota": "No más de 500 mg por toma: se absorbe mejor."
+      },
+      "como_tomar": "Carbonato: con comida. Citrato: con o sin comida.",
+      "formas": [
+        {
+          "forma": "Carbonato de calcio",
+          "detalle": "40 % de calcio; necesita ácido del estómago (tomar con comida). Más gases y estreñimiento."
+        },
+        {
+          "forma": "Citrato de calcio",
+          "detalle": "21 % de calcio; se absorbe sin comida; preferible si usa omeprazol u otros IBP o es adulto mayor."
+        }
+      ],
+      "efectos_secundarios": [
+        "Estreñimiento, gases, distensión.",
+        "Cálculos renales en dosis altas."
+      ],
+      "precauciones": ["Antecedente de cálculos renales o hipercalcemia."],
+      "interacciones": [
+        "Levotiroxina: separar 4 h.",
+        "Hierro, zinc, quinolonas, tetraciclinas y bisfosfonatos: separar al menos 2 h.",
+        "Diuréticos tiazídicos: riesgo de hipercalcemia."
+      ],
+      "ficha": {
+        "indicaciones": "Completar una ingesta baja de calcio. Osteoporosis, junto con vitamina D y el tratamiento indicado.",
+        "efectosSecundarios": "Estreñimiento, gases, distensión. Cálculos renales en dosis altas.",
+        "observaciones": "500-1.000 mg/día, máximo 500 mg por toma. Carbonato con comida; citrato sin necesidad de comida (mejor si usa omeprazol). Separar de levotiroxina (4 h), hierro, quinolonas y alendronato."
+      },
+      "fuentes": ["nih-ods-calcio", "minsal-res-394-2002"],
+      "excluir": ["aposito"]
+    },
+    {
+      "id": "vitamina-b12",
+      "nombre": "Vitamina B12",
+      "terminos": [
+        "vitamina b12",
+        "cianocobalamina",
+        "metilcobalamina",
+        "hidroxocobalamina",
+        "b12"
+      ],
+      "categoria": "vitamina",
+      "estatus_chile": {
+        "clasificacion": "Suplemento hasta 12 µg/día; las dosis altas (ej: 1.000 µg) son medicamento.",
+        "limite_suplemento": "12 µg/día (Res. 394/2002); el proyecto de 2019 propone 28,8 µg.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Prevenir déficit en veganos y vegetarianos estrictos",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Déficit por metformina, omeprazol u otros IBP prolongados, mayores de 50 años, cirugía bariátrica",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Anemia perniciosa: la vía oral en dosis altas puede reemplazar a las inyecciones",
+          "evidencia": "moderada"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "2,4 µg (NIH ODS).",
+        "suplementacion_habitual": "Prevención: 10-250 µg/día o 1.000-2.000 µg semanales. Corrección de déficit: 1.000 µg/día con indicación médica.",
+        "limite_superior": "Sin UL definido (baja toxicidad).",
+        "nota": "En dosis altas se absorbe ~1 % por difusión pasiva, incluso sin factor intrínseco."
+      },
+      "como_tomar": "Con o sin comida; sublingual u oral tienen eficacia similar.",
+      "formas": [
+        {
+          "forma": "Cianocobalamina",
+          "detalle": "Estable y barata; la más estudiada."
+        },
+        {
+          "forma": "Metilcobalamina",
+          "detalle": "Forma activa; sin ventaja clínica demostrada sobre la cianocobalamina."
+        },
+        {
+          "forma": "Hidroxocobalamina",
+          "detalle": "Inyectable; dura más en el organismo."
+        }
+      ],
+      "efectos_secundarios": [
+        "Muy raros por vía oral. Puede producir acné en dosis altas."
+      ],
+      "precauciones": [
+        "El ácido fólico en dosis altas puede ocultar la anemia de un déficit de B12 mientras avanza el daño neurológico."
+      ],
+      "interacciones": [
+        "Metformina, omeprazol u otros IBP y anti-H2 a largo plazo: reducen su absorción (motivo para suplementar)."
+      ],
+      "ficha": {
+        "indicaciones": "Prevenir o corregir déficit de B12: veganos, mayores de 50 años, uso prolongado de metformina u omeprazol, cirugía bariátrica.",
+        "efectosSecundarios": "Muy raros por vía oral.",
+        "observaciones": "Prevención 10-250 µg/día; déficit 1.000 µg/día con indicación médica. En Chile, sobre 12 µg/día es medicamento. Cianocobalamina y metilcobalamina tienen eficacia similar."
+      },
+      "fuentes": ["nih-ods-vitamina-b12", "minsal-res-394-2002"],
+      "excluir": ["diclofenaco", "clonixinato"]
+    },
+    {
+      "id": "vitamina-c",
+      "nombre": "Vitamina C (ácido ascórbico)",
+      "terminos": ["vitamina c", "acido ascorbico", "ascorbato"],
+      "categoria": "vitamina",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "1.000 mg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Prevenir déficit (dieta sin frutas ni verduras, fumadores)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Resfrío: el uso regular acorta un poco su duración (~8 % en adultos); no lo previene en la población general",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Mejorar la absorción del hierro no hemínico",
+          "evidencia": "alta"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "75 mg (mujeres) y 90 mg (hombres); +35 mg en fumadores (NIH ODS).",
+        "suplementacion_habitual": "100-1.000 mg/día.",
+        "limite_superior": "2.000 mg/día (UL)."
+      },
+      "como_tomar": "Con comida; repartida si la dosis es alta.",
+      "formas": [
+        {
+          "forma": "Ácido ascórbico, ascorbato de sodio o calcio, efervescentes",
+          "detalle": "Eficacia similar; los efervescentes aportan sodio."
+        }
+      ],
+      "efectos_secundarios": [
+        "Diarrea y molestias gástricas sobre 2 g/día.",
+        "Cálculos renales de oxalato en hombres con dosis altas mantenidas."
+      ],
+      "precauciones": [
+        "Antecedente de cálculos renales.",
+        "Hemocromatosis (aumenta la absorción de hierro)."
+      ],
+      "interacciones": [
+        "Puede alterar algunos exámenes de glucosa y de sangre oculta en heces."
+      ],
+      "ficha": {
+        "indicaciones": "Prevenir déficit de vitamina C (fumadores, dieta pobre en frutas y verduras). Mejora la absorción del hierro. Con uso regular acorta un poco la duración del resfrío.",
+        "efectosSecundarios": "Diarrea y molestias gástricas sobre 2 g/día. Cálculos renales con dosis altas mantenidas.",
+        "observaciones": "Dosis habitual 100-1.000 mg/día; máximo 2.000 mg/día. No previene el resfrío en la población general. Los efervescentes aportan sodio."
+      },
+      "fuentes": ["nih-ods-vitamina-c", "minsal-res-394-2002"],
+      "excluir": []
+    },
+    {
+      "id": "vitamina-k2",
+      "nombre": "Vitamina K2 (menaquinona, MK-7)",
+      "terminos": ["vitamina k2", "menaquinona", "mk-7", "mk7"],
+      "categoria": "vitamina",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "600 µg/día de vitamina K (Res. 394/2002).",
+        "nota": "Se vende a menudo junto con vitamina D3."
+      },
+      "usos": [
+        {
+          "uso": "Salud ósea (junto con D3 y calcio)",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Prevenir la calcificación vascular",
+          "evidencia": "insuficiente"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "90 µg (mujeres) y 120 µg (hombres) de vitamina K total (ingesta adecuada, NIH ODS).",
+        "suplementacion_habitual": "90-200 µg/día de MK-7.",
+        "limite_superior": "Sin UL definido."
+      },
+      "como_tomar": "Con comida con grasa.",
+      "formas": [
+        {
+          "forma": "MK-7",
+          "detalle": "Vida media larga; la más usada en suplementos."
+        },
+        {
+          "forma": "MK-4",
+          "detalle": "Vida media corta; se usa en dosis altas en algunos países."
+        }
+      ],
+      "efectos_secundarios": ["Poco frecuentes."],
+      "precauciones": [
+        "CONTRAINDICADA sin control médico en personas que usan anticoagulantes antivitamina K."
+      ],
+      "interacciones": [
+        "Acenocumarol (Neo-Sintrom) y warfarina: disminuye su efecto anticoagulante (riesgo de trombosis). No afecta a apixabán ni rivaroxabán."
+      ],
+      "ficha": {
+        "indicaciones": "Se usa junto con vitamina D3 para la salud ósea; la evidencia es baja.",
+        "efectosSecundarios": "Poco frecuentes.",
+        "observaciones": "Dosis habitual 90-200 µg/día de MK-7, con comida. NO usar con acenocumarol (Neo-Sintrom) ni warfarina sin control médico: disminuye el efecto anticoagulante. Revisar si el producto de vitamina D3 trae K2."
+      },
+      "fuentes": ["nih-ods-vitamina-k", "minsal-res-394-2002"],
+      "excluir": []
+    },
+    {
+      "id": "biotina",
+      "nombre": "Biotina (vitamina B7)",
+      "terminos": ["biotina", "vitamina b7", "vitamina h"],
+      "categoria": "vitamina",
+      "estatus_chile": {
+        "clasificacion": "Suplemento hasta 150 µg/día; las dosis altas para pelo y uñas (5.000-10.000 µg) exceden ese límite.",
+        "limite_suplemento": "150 µg/día (Res. 394/2002).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Déficit de biotina (raro)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Caída de pelo y uñas quebradizas en personas sin déficit",
+          "evidencia": "insuficiente"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "30 µg (ingesta adecuada, NIH ODS).",
+        "suplementacion_habitual": "30-150 µg/día en multivitamínicos; los productos para pelo traen 2.500-10.000 µg.",
+        "limite_superior": "Sin UL definido."
+      },
+      "como_tomar": "Con o sin comida.",
+      "formas": [],
+      "efectos_secundarios": ["Bien tolerada."],
+      "precauciones": [
+        "Las dosis altas alteran exámenes de laboratorio (troponina, hormonas tiroideas, hormonas sexuales, vitamina D): suspender 2-3 días antes de un examen de sangre y avisar al laboratorio (alerta de la FDA)."
+      ],
+      "interacciones": [
+        "Anticonvulsivantes (carbamazepina, fenitoína) pueden bajar sus niveles."
+      ],
+      "ficha": {
+        "indicaciones": "Déficit de biotina (raro). Se promociona para pelo y uñas, sin evidencia en personas sin déficit.",
+        "efectosSecundarios": "Bien tolerada.",
+        "observaciones": "Las dosis altas (5.000-10.000 µg) alteran exámenes de sangre (troponina, tiroides, hormonas): suspender 2-3 días antes y avisar al laboratorio. Límite de suplemento en Chile: 150 µg/día."
+      },
+      "fuentes": ["nih-ods-biotina", "minsal-res-394-2002"],
+      "excluir": []
+    },
+    {
+      "id": "omega-3",
+      "nombre": "Omega-3 (EPA y DHA)",
+      "terminos": [
+        "omega 3",
+        "omega-3",
+        "epa",
+        "dha",
+        "aceite de pescado",
+        "aceite de krill"
+      ],
+      "categoria": "ácido graso",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario (las presentaciones de dosis alta para triglicéridos pueden ser medicamento).",
+        "limite_suplemento": "Sin límite en la Res. 394/2002.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Bajar triglicéridos altos (2-4 g/día de EPA+DHA, con indicación médica)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Aporte en personas que no comen pescado",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Prevención cardiovascular en población general",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Ojo seco, ánimo, cognición",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "referencia_diaria": "250-500 mg/día de EPA+DHA (recomendaciones generales).",
+        "suplementacion_habitual": "500-1.000 mg/día de EPA+DHA.",
+        "limite_superior": "Hasta 5 g/día de EPA+DHA se consideran seguros (EFSA); sobre 3 g/día, con control médico.",
+        "nota": "'1.000 mg de aceite de pescado' no equivale a 1.000 mg de omega-3: revisar los mg de EPA+DHA en la etiqueta."
+      },
+      "como_tomar": "Con la comida principal (mejor absorción y menos eructos).",
+      "formas": [
+        {
+          "forma": "Aceite de pescado (triglicéridos o ésteres etílicos)",
+          "detalle": "La más común."
+        },
+        {
+          "forma": "Aceite de krill",
+          "detalle": "Menos EPA+DHA por cápsula."
+        },
+        {
+          "forma": "Aceite de algas",
+          "detalle": "Opción vegana, rica en DHA."
+        }
+      ],
+      "efectos_secundarios": [
+        "Eructos con sabor a pescado, náuseas, diarrea.",
+        "Mayor riesgo de fibrilación auricular con dosis ≥1 g/día en ensayos."
+      ],
+      "precauciones": [
+        "Alergia al pescado (excepto aceite de algas).",
+        "Suspender antes de una cirugía si la dosis es alta."
+      ],
+      "interacciones": [
+        "Anticoagulantes y antiagregantes: posible aumento del riesgo de sangrado en dosis altas."
+      ],
+      "ficha": {
+        "indicaciones": "Bajar triglicéridos altos (dosis altas con indicación médica). Aporte para quienes no comen pescado.",
+        "efectosSecundarios": "Eructos con sabor a pescado, náuseas, diarrea. Con dosis altas, mayor riesgo de fibrilación auricular.",
+        "observaciones": "Dosis habitual 500-1.000 mg/día de EPA+DHA (no de aceite: revisar etiqueta); triglicéridos 2-4 g/día con médico. Tomar con comida. Precaución con anticoagulantes en dosis altas. Aceite de algas para veganos."
+      },
+      "fuentes": ["nih-ods-omega-3"],
+      "excluir": ["jabon"]
+    },
+    {
+      "id": "creatina",
+      "nombre": "Creatina monohidrato",
+      "terminos": ["creatina", "creatine", "monohidrato de creatina"],
+      "categoria": "rendimiento deportivo",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario (alimento para deportistas).",
+        "limite_suplemento": "El proyecto de 2019 propone 500-5.000 mg/día (no confirmado vigente).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Fuerza y rendimiento en ejercicio intenso e intermitente (pesas, sprints)",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Aumento de masa muscular junto con entrenamiento de fuerza",
+          "evidencia": "alta"
+        },
+        {
+          "uso": "Adultos mayores con sarcopenia, junto con ejercicio",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Cognición, fatiga mental, depresión (como apoyo)",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "3-5 g/día de forma continua (llena los depósitos musculares en ~4 semanas).",
+        "fase_de_carga_opcional": "0,3 g/kg/día (~20 g/día en 4 tomas de 5 g) por 5-7 días, luego 3-5 g/día.",
+        "limite_superior": "Sin UL; ensayos de hasta 30 g/día por 5 años sin daño en personas sanas (ISSN).",
+        "nota": "Personas grandes pueden necesitar 5-10 g/día."
+      },
+      "como_tomar": "Todos los días, a cualquier hora (incluso días sin entrenamiento). Con comida o con el batido post entrenamiento. Mantener buena hidratación.",
+      "formas": [
+        {
+          "forma": "Monohidrato",
+          "detalle": "La más estudiada, eficaz y barata. 'Creapure' es una marca de monohidrato de alta pureza."
+        },
+        {
+          "forma": "HCl, etil éster, tamponada (Kre-Alkalyn)",
+          "detalle": "Sin ventajas demostradas sobre el monohidrato."
+        }
+      ],
+      "efectos_secundarios": [
+        "Aumento de peso de 1-2 kg por retención de agua en el músculo.",
+        "Molestias gástricas o diarrea con dosis grandes de una vez (repartir la carga)."
+      ],
+      "precauciones": [
+        "Enfermedad renal: usar solo con indicación médica.",
+        "Sube la creatinina en sangre sin dañar el riñón: avisar al médico antes de exámenes de función renal."
+      ],
+      "interacciones": [
+        "Fármacos nefrotóxicos (AINE en dosis altas, aminoglucósidos): precaución teórica."
+      ],
+      "ficha": {
+        "indicaciones": "Aumentar fuerza, rendimiento y masa muscular junto con entrenamiento de fuerza. Apoyo en adultos mayores con pérdida de masa muscular, junto con ejercicio.",
+        "efectosSecundarios": "Aumento de 1-2 kg de peso por agua en el músculo. Molestias gástricas con dosis grandes de una vez.",
+        "observaciones": "Monohidrato 3-5 g/día, todos los días (la carga de 20 g/día por 5-7 días es opcional). Segura en personas sanas. Sube la creatinina en los exámenes sin dañar el riñón: avisar al médico. Evitar en enfermedad renal sin indicación médica. Otras formas no superan al monohidrato."
+      },
+      "fuentes": ["issn-creatina-2017", "minsal-proyecto-sustancias-2019"],
+      "excluir": []
+    },
+    {
+      "id": "colageno",
+      "nombre": "Colágeno hidrolizado",
+      "terminos": [
+        "colageno",
+        "colageno hidrolizado",
+        "peptidos de colageno",
+        "colageno tipo ii",
+        "uc-ii"
+      ],
+      "categoria": "proteína",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "Sin límite específico.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Hidratación y elasticidad de la piel",
+          "evidencia": "baja",
+          "nota": "Efectos modestos; muchos estudios financiados por fabricantes."
+        },
+        {
+          "uso": "Dolor articular en artrosis",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "Piel: 2,5-10 g/día. Articulaciones: 10 g/día de colágeno hidrolizado o 40 mg/día de colágeno tipo II no desnaturalizado (UC-II).",
+        "limite_superior": "Sin UL; es una proteína alimentaria."
+      },
+      "como_tomar": "Disuelto en líquido, a cualquier hora. Efectos evaluados tras 8-12 semanas.",
+      "formas": [
+        {
+          "forma": "Péptidos de colágeno hidrolizado (tipo I y III)",
+          "detalle": "Piel; dosis en gramos."
+        },
+        {
+          "forma": "Colágeno tipo II no desnaturalizado (UC-II)",
+          "detalle": "Articulaciones; dosis en miligramos."
+        }
+      ],
+      "efectos_secundarios": [
+        "Molestias digestivas leves, sensación de llenura."
+      ],
+      "precauciones": [
+        "Origen bovino, porcino o marino: alergias a pescado o mariscos, restricciones religiosas.",
+        "No es una proteína completa: no reemplaza a otras fuentes de proteína."
+      ],
+      "interacciones": [],
+      "ficha": {
+        "indicaciones": "Se usa para la piel (hidratación, elasticidad) y el dolor articular en artrosis; la evidencia es baja y los efectos son modestos.",
+        "efectosSecundarios": "Molestias digestivas leves.",
+        "observaciones": "Piel 2,5-10 g/día; articulaciones 10 g/día (o UC-II 40 mg/día). Resultados a las 8-12 semanas. Revisar origen (marino) si hay alergia a pescado o mariscos."
+      },
+      "fuentes": [],
+      "excluir": ["crema"]
+    },
+    {
+      "id": "coenzima-q10",
+      "nombre": "Coenzima Q10 (ubiquinona / ubiquinol)",
+      "terminos": ["coenzima q10", "q10", "coq10", "ubiquinona", "ubiquinol"],
+      "categoria": "antioxidante",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario.",
+        "limite_suplemento": "El proyecto de 2019 propone 10-400 mg/día (no confirmado vigente).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Insuficiencia cardíaca, como complemento del tratamiento",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Prevención de migraña",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Dolores musculares por estatinas",
+          "evidencia": "baja",
+          "nota": "Resultados mixtos."
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "100-200 mg/día (rango estudiado 30-300 mg).",
+        "limite_superior": "Bien tolerada hasta 1.200 mg/día en estudios."
+      },
+      "como_tomar": "Con comida con grasa; repartir si supera 100 mg.",
+      "formas": [
+        {
+          "forma": "Ubiquinona",
+          "detalle": "La forma clásica, más barata."
+        },
+        {
+          "forma": "Ubiquinol",
+          "detalle": "Forma reducida; se promociona como de mejor absorción."
+        }
+      ],
+      "efectos_secundarios": [
+        "Náuseas, diarrea, insomnio si se toma de noche."
+      ],
+      "precauciones": [],
+      "interacciones": [
+        "Warfarina y acenocumarol: puede disminuir su efecto (controlar el INR).",
+        "Antihipertensivos: posible baja adicional de la presión."
+      ],
+      "ficha": {
+        "indicaciones": "Complemento en insuficiencia cardíaca. Se usa para dolores musculares por estatinas y prevención de migraña, con evidencia baja.",
+        "efectosSecundarios": "Náuseas, diarrea, insomnio si se toma de noche.",
+        "observaciones": "100-200 mg/día con comida con grasa, de preferencia en la mañana. Puede disminuir el efecto del acenocumarol o la warfarina: controlar el INR."
+      },
+      "fuentes": ["minsal-proyecto-sustancias-2019"],
+      "excluir": ["crema"]
+    },
+    {
+      "id": "melatonina",
+      "nombre": "Melatonina",
+      "terminos": ["melatonina"],
+      "categoria": "hormona",
+      "estatus_chile": {
+        "clasificacion": "MEDICAMENTO: tiene registros ISP para el tratamiento de corto plazo del insomnio primario. No es suplemento alimentario en Chile.",
+        "limite_suplemento": "No aplica.",
+        "nota": "Ningún registro chileno está aprobado para menores de 18 años. Revisar en cada producto su condición de venta según el registro."
+      },
+      "usos": [
+        {
+          "uso": "Desfase horario (jet lag)",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Insomnio de inicio, sobre todo en mayores de 55 años (liberación prolongada)",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Trastornos del ritmo circadiano (fase de sueño retrasada, trabajo por turnos)",
+          "evidencia": "moderada"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "0,5-5 mg, 30-60 minutos antes de dormir. Dosis bajas (0,5-1 mg) suelen bastar para ajustar el ritmo.",
+        "insomnio_mayores": "2 mg de liberación prolongada, 1-2 horas antes de acostarse.",
+        "limite_superior": "Sin UL; usar la menor dosis eficaz y por periodos cortos."
+      },
+      "como_tomar": "Antes de dormir, a la misma hora; evitar luz de pantallas después.",
+      "formas": [
+        {
+          "forma": "Liberación inmediata",
+          "detalle": "Para conciliar el sueño y desfase horario."
+        },
+        {
+          "forma": "Liberación prolongada",
+          "detalle": "Para mantener el sueño en mayores."
+        }
+      ],
+      "efectos_secundarios": [
+        "Somnolencia al día siguiente, cefalea, mareos, náuseas, sueños vívidos."
+      ],
+      "precauciones": [
+        "No manejar ni operar máquinas tras tomarla.",
+        "Embarazo, lactancia, enfermedades autoinmunes, epilepsia: solo con indicación médica.",
+        "Niños: sin registro aprobado en Chile."
+      ],
+      "interacciones": [
+        "Fluvoxamina: aumenta mucho sus niveles (evitar).",
+        "Alcohol, benzodiacepinas, zolpidem y otros sedantes: suman somnolencia.",
+        "Anticoagulantes (warfarina): posibles cambios en el INR."
+      ],
+      "ficha": {
+        "indicaciones": "Insomnio de inicio de corto plazo (sobre todo mayores de 55 años), desfase horario (jet lag) y trastornos del ritmo del sueño.",
+        "efectosSecundarios": "Somnolencia al día siguiente, cefalea, mareos, náuseas, sueños vívidos.",
+        "observaciones": "En Chile es MEDICAMENTO con registro ISP, no suplemento; revisar la condición de venta del producto. Dosis 0,5-5 mg 30-60 min antes de dormir; mayores: 2 mg liberación prolongada. Sin registro aprobado para niños. Evitar con fluvoxamina; suma sedación con alcohol y otros sedantes. No manejar después de tomarla."
+      },
+      "fuentes": [
+        "isp-farmacovigilancia-melatonina",
+        "vademecum-melatonina-3mg"
+      ],
+      "excluir": []
+    },
+    {
+      "id": "ashwagandha",
+      "nombre": "Ashwagandha (Withania somnifera, ginseng indio)",
+      "terminos": [
+        "ashwagandha",
+        "withania",
+        "withania somnifera",
+        "ksm-66",
+        "ginseng indio"
+      ],
+      "categoria": "planta adaptógena",
+      "estatus_chile": {
+        "clasificacion": "MEDICAMENTO: el ISP calificó la Withania somnifera con régimen de control de producto farmacéutico (Res. Ex. 2024/2013). Sin registro ISP no puede venderse legalmente en Chile.",
+        "limite_suplemento": "No aplica.",
+        "nota": "Dinamarca la prohibió en suplementos en 2023 y otras agencias europeas desaconsejan su uso en ciertos grupos, por casos de daño hepático y efectos sobre tiroides y hormonas."
+      },
+      "usos": [
+        {
+          "uso": "Estrés y ansiedad percibidos",
+          "evidencia": "moderada",
+          "nota": "Ensayos pequeños, de 6-12 semanas, varios financiados por fabricantes."
+        },
+        {
+          "uso": "Calidad del sueño",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Fuerza muscular y testosterona en hombres",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "250-600 mg/día de extracto estandarizado de raíz (ej: KSM-66 300 mg dos veces al día), por 8-12 semanas.",
+        "limite_superior": "Sin UL; la seguridad a largo plazo (meses o años) no está establecida.",
+        "nota": "Los beneficios en estudios fueron mayores con 500-600 mg/día."
+      },
+      "como_tomar": "Con comida; en la noche si el objetivo es el sueño.",
+      "formas": [
+        {
+          "forma": "Extracto de raíz KSM-66",
+          "detalle": "≥5 % de witanólidos; el más estudiado."
+        },
+        {
+          "forma": "Extracto de raíz y hoja (Sensoril)",
+          "detalle": "Dosis menores (125-250 mg)."
+        }
+      ],
+      "efectos_secundarios": [
+        "Molestias gástricas, diarrea, náuseas, somnolencia.",
+        "Casos raros de daño hepático (hepatitis colestásica).",
+        "Puede aumentar las hormonas tiroideas."
+      ],
+      "precauciones": [
+        "Evitar en embarazo (uso tradicional abortivo) y lactancia.",
+        "Hipertiroidismo, enfermedades autoinmunes, cáncer de próstata hormonodependiente, enfermedad hepática.",
+        "Suspender 2 semanas antes de una cirugía."
+      ],
+      "interacciones": [
+        "Levotiroxina: puede sumar efecto tiroideo.",
+        "Sedantes, benzodiacepinas, alcohol: más somnolencia.",
+        "Inmunosupresores: puede contrarrestarlos.",
+        "Antidiabéticos y antihipertensivos: posible efecto aditivo."
+      ],
+      "ficha": {
+        "indicaciones": "Se usa para estrés y ansiedad (evidencia moderada en ensayos pequeños) y para la calidad del sueño (evidencia baja).",
+        "efectosSecundarios": "Molestias gástricas, diarrea, somnolencia. Casos raros de daño hepático. Puede aumentar las hormonas tiroideas.",
+        "observaciones": "En Chile el ISP la clasifica como MEDICAMENTO: solo productos con registro ISP pueden venderse. Dosis estudiada 250-600 mg/día de extracto de raíz por 8-12 semanas. Evitar en embarazo, hipertiroidismo, enfermedad hepática o autoinmune. Interactúa con levotiroxina, sedantes e inmunosupresores. Prohibida en suplementos en Dinamarca (2023)."
+      },
+      "fuentes": [
+        "nih-ods-ashwagandha",
+        "isp-res-2024-2013",
+        "control-ciudadano-ashwagandha"
+      ],
+      "excluir": []
+    },
+    {
+      "id": "curcuma",
+      "nombre": "Cúrcuma / curcumina",
+      "terminos": ["curcuma", "curcumina", "turmeric"],
+      "categoria": "planta",
+      "estatus_chile": {
+        "clasificacion": "En cápsulas, MEDICAMENTO: régimen de control farmacéutico según calificación del ISP (Res. Ex. 1393/2019, dato de fuente secundaria). Como especia es alimento.",
+        "limite_suplemento": "No aplica a cápsulas.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Dolor en artrosis de rodilla",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Inflamación en general, colon irritable, colitis ulcerosa (como apoyo)",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "500-2.000 mg/día de extracto de curcumina, repartido.",
+        "limite_superior": "Sin UL; los estudios suelen durar hasta 8-12 semanas.",
+        "nota": "La curcumina sola se absorbe muy poco; se combina con piperina (pimienta negra) o en formulaciones de mayor absorción."
+      },
+      "como_tomar": "Con comida con grasa.",
+      "formas": [
+        {
+          "forma": "Extracto estandarizado (95 % curcuminoides)",
+          "detalle": "Baja absorción sola."
+        },
+        {
+          "forma": "Con piperina, fitosoma, micelar",
+          "detalle": "Mayor absorción; también más interacciones y casos hepáticos reportados."
+        }
+      ],
+      "efectos_secundarios": [
+        "Molestias gástricas, diarrea, reflujo.",
+        "Casos de daño hepático, sobre todo con formulaciones de alta absorción o con piperina."
+      ],
+      "precauciones": [
+        "Cálculos o obstrucción de la vía biliar.",
+        "Suspender 2 semanas antes de una cirugía.",
+        "Embarazo: en dosis de suplemento, evitar."
+      ],
+      "interacciones": [
+        "Anticoagulantes y antiagregantes (acenocumarol, warfarina, clopidogrel, aspirina): más riesgo de sangrado.",
+        "La piperina aumenta los niveles de muchos fármacos."
+      ],
+      "ficha": {
+        "indicaciones": "Dolor en artrosis de rodilla (evidencia moderada). Se usa como apoyo antiinflamatorio, con evidencia baja.",
+        "efectosSecundarios": "Molestias gástricas, diarrea, reflujo. Casos de daño hepático, sobre todo con piperina o fórmulas de alta absorción.",
+        "observaciones": "En cápsulas el ISP la clasifica como medicamento: revisar registro. Dosis 500-2.000 mg/día de curcumina con comida. Precaución con anticoagulantes y antiagregantes. Evitar con cálculos biliares y antes de cirugías."
+      },
+      "fuentes": ["control-ciudadano-listado-isp", "nccih-curcuma"],
+      "excluir": []
+    },
+    {
+      "id": "ajo-negro",
+      "nombre": "Ajo negro / extracto de ajo envejecido",
+      "terminos": [
+        "ajo negro",
+        "ajo envejecido",
+        "black garlic",
+        "aged garlic",
+        "ajo"
+      ],
+      "categoria": "planta / alimento",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario (el ajo es un alimento).",
+        "limite_suplemento": "Sin límite específico.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Bajar levemente la presión arterial en personas con hipertensión (extracto de ajo envejecido)",
+          "evidencia": "moderada",
+          "nota": "Metaanálisis de ensayos con extracto de ajo envejecido; para el ajo negro en sí hay muy pocos estudios."
+        },
+        {
+          "uso": "Colesterol",
+          "evidencia": "baja",
+          "nota": "Resultados mixtos: algunos ensayos muestran una baja leve del LDL, otros ningún efecto."
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "Extracto de ajo envejecido: 480-1.200 mg/día (presión arterial). Extracto de ajo negro: 250 mg/día en ensayos.",
+        "limite_superior": "Sin UL."
+      },
+      "como_tomar": "Con comida.",
+      "formas": [
+        {
+          "forma": "Ajo negro",
+          "detalle": "Ajo envejecido con calor y humedad por semanas; sabor dulce, sin olor fuerte; más S-alil-cisteína."
+        },
+        {
+          "forma": "Extracto de ajo envejecido (AGE)",
+          "detalle": "El más estudiado para presión arterial."
+        }
+      ],
+      "efectos_secundarios": [
+        "Menos olor y molestias digestivas que el ajo crudo.",
+        "Acidez, gases."
+      ],
+      "precauciones": [
+        "Suspender 7 días antes de una cirugía (riesgo de sangrado)."
+      ],
+      "interacciones": [
+        "Anticoagulantes y antiagregantes: posible aumento del riesgo de sangrado.",
+        "Saquinavir y otros antirretrovirales: el ajo puede bajar sus niveles.",
+        "Antihipertensivos: efecto aditivo."
+      ],
+      "ficha": {
+        "indicaciones": "Apoyo para bajar levemente la presión arterial (evidencia moderada con extracto de ajo envejecido; pocos estudios con ajo negro). Efecto en colesterol poco claro.",
+        "efectosSecundarios": "Acidez y gases; menos olor que el ajo crudo.",
+        "observaciones": "Extracto de ajo envejecido 480-1.200 mg/día. Precaución con anticoagulantes y antiagregantes; suspender 7 días antes de una cirugía. Puede bajar los niveles de algunos antirretrovirales. No reemplaza el tratamiento de la hipertensión."
+      },
+      "fuentes": [
+        "pubmed-ajo-envejecido-presion",
+        "pmc-ajo-envejecido-colesterol",
+        "nccih-ajo"
+      ],
+      "excluir": []
+    },
+    {
+      "id": "aceite-de-oregano",
+      "nombre": "Aceite de orégano (carvacrol)",
+      "terminos": ["aceite de oregano", "oregano", "carvacrol"],
+      "categoria": "planta / aceite esencial",
+      "estatus_chile": {
+        "clasificacion": "Se comercializa como suplemento alimentario; no aparece en el listado del ISP de ingredientes con régimen de medicamento revisado.",
+        "limite_suplemento": "Sin límite específico.",
+        "nota": "No puede declarar efecto antibiótico ni antimicrobiano en el rotulado."
+      },
+      "usos": [
+        {
+          "uso": "Antimicrobiano / antiparasitario / antifúngico",
+          "evidencia": "insuficiente",
+          "nota": "Funciona en laboratorio; casi no hay ensayos en personas."
+        },
+        {
+          "uso": "Sobrecrecimiento bacteriano intestinal (SIBO)",
+          "evidencia": "insuficiente",
+          "nota": "Solo estudiado en mezclas de hierbas, no el aceite de orégano solo."
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "Cápsulas con 4-30 mg de carvacrol, 1-3 veces al día, por ciclos cortos de 1-2 semanas.",
+        "limite_superior": "Sin UL; seguridad a largo plazo desconocida."
+      },
+      "como_tomar": "Solo en cápsulas o diluido, con comida. Nunca el aceite esencial puro en la boca.",
+      "formas": [
+        {
+          "forma": "Cápsulas blandas de aceite diluido",
+          "detalle": "Estandarizadas en carvacrol (60-80 % del aceite)."
+        }
+      ],
+      "efectos_secundarios": [
+        "Acidez, náuseas, aliento a orégano.",
+        "Irritación o quemadura de mucosas si se usa sin diluir."
+      ],
+      "precauciones": [
+        "Embarazo y lactancia: evitar.",
+        "Alergia a plantas de la familia de la menta (albahaca, lavanda, salvia).",
+        "No reemplaza a un antibiótico indicado."
+      ],
+      "interacciones": [
+        "Anticoagulantes y antidiabéticos: posible efecto aditivo (teórico)."
+      ],
+      "ficha": {
+        "indicaciones": "Se promociona como antimicrobiano y para molestias digestivas; no hay evidencia sólida en personas.",
+        "efectosSecundarios": "Acidez, náuseas, aliento a orégano. Quemadura de mucosas si se usa sin diluir.",
+        "observaciones": "Solo en cápsulas o diluido, nunca puro. Ciclos cortos de 1-2 semanas (cápsulas de 4-30 mg de carvacrol, 1-3 veces al día). Evitar en embarazo. No reemplaza a un antibiótico."
+      },
+      "fuentes": ["acibadem-aceite-oregano", "pmc-aceite-oregano"],
+      "excluir": []
+    },
+    {
+      "id": "maca",
+      "nombre": "Maca (Lepidium meyenii)",
+      "terminos": ["maca", "lepidium"],
+      "categoria": "planta / alimento",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario como polvo o cápsulas de maca común.",
+        "limite_suplemento": "Sin límite específico.",
+        "nota": "El listado secundario del ISP menciona por separado maca negra y maca roja: revisar el registro de esos productos."
+      },
+      "usos": [
+        {
+          "uso": "Deseo sexual y disfunción sexual leve",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Síntomas de la menopausia, energía",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "1,5-3 g/día de raíz en polvo, por 6-12 semanas.",
+        "limite_superior": "Sin UL; se considera un alimento seguro."
+      },
+      "como_tomar": "Con comida, en batidos o cápsulas.",
+      "formas": [
+        {
+          "forma": "Maca amarilla, roja o negra (gelatinizada o cruda)",
+          "detalle": "La gelatinizada es más digerible."
+        }
+      ],
+      "efectos_secundarios": ["Molestias digestivas leves."],
+      "precauciones": [
+        "Enfermedades sensibles a hormonas: precaución teórica.",
+        "Enfermedad tiroidea: contiene glucosinolatos (efecto bajo con dieta normal de yodo)."
+      ],
+      "interacciones": [],
+      "ficha": {
+        "indicaciones": "Se usa para el deseo sexual y la energía; la evidencia es baja.",
+        "efectosSecundarios": "Molestias digestivas leves.",
+        "observaciones": "1,5-3 g/día de raíz en polvo por 6-12 semanas. Precaución teórica en enfermedades sensibles a hormonas. Maca negra y roja aparecen en el listado del ISP: revisar registro."
+      },
+      "fuentes": ["control-ciudadano-listado-isp"],
+      "excluir": []
+    },
+    {
+      "id": "ginseng",
+      "nombre": "Ginseng coreano (Panax ginseng)",
+      "terminos": ["ginseng", "panax", "panax ginseng", "ginseng coreano"],
+      "categoria": "planta adaptógena",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario en dosis bajas; productos con declaraciones terapéuticas o dosis altas pueden ser medicamento.",
+        "limite_suplemento": "El proyecto de 2019 propone máx. 1 g/día de raíz (no confirmado vigente).",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Fatiga y rendimiento mental",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Disfunción eréctil",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Control de la glucosa en diabetes tipo 2 (como apoyo)",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "200-400 mg/día de extracto estandarizado o 1-2 g/día de raíz seca, en ciclos de hasta 3 meses.",
+        "limite_superior": "Sin UL."
+      },
+      "como_tomar": "En la mañana (puede quitar el sueño).",
+      "formas": [
+        {
+          "forma": "Raíz roja o blanca, extractos estandarizados en ginsenósidos",
+          "detalle": "El ginseng siberiano (Eleutherococcus) es otra planta."
+        }
+      ],
+      "efectos_secundarios": [
+        "Insomnio, nerviosismo, cefalea, molestias digestivas."
+      ],
+      "precauciones": [
+        "Hipertensión no controlada, enfermedades sensibles a hormonas, embarazo."
+      ],
+      "interacciones": [
+        "Warfarina y acenocumarol: puede disminuir su efecto.",
+        "Antidiabéticos: riesgo de hipoglucemia.",
+        "Antidepresivos IMAO: posibles reacciones (nerviosismo, manía)."
+      ],
+      "ficha": {
+        "indicaciones": "Se usa para fatiga y rendimiento mental; la evidencia es baja.",
+        "efectosSecundarios": "Insomnio, nerviosismo, cefalea, molestias digestivas.",
+        "observaciones": "200-400 mg/día de extracto o 1-2 g/día de raíz, en la mañana y en ciclos de hasta 3 meses. Puede disminuir el efecto del acenocumarol o la warfarina y sumar con antidiabéticos (hipoglucemia)."
+      },
+      "fuentes": ["minsal-proyecto-sustancias-2019", "nccih-ginseng"],
+      "excluir": []
+    },
+    {
+      "id": "probioticos",
+      "nombre": "Probióticos",
+      "terminos": [
+        "probiotico",
+        "probioticos",
+        "lactobacillus",
+        "bifidobacterium",
+        "saccharomyces boulardii",
+        "lgg"
+      ],
+      "categoria": "microorganismos",
+      "estatus_chile": {
+        "clasificacion": "Suplemento alimentario; algunos (ej: Saccharomyces boulardii) también tienen presentaciones registradas como medicamento.",
+        "limite_suplemento": "El proyecto de 2019 propone un mínimo de 10^7 UFC.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Prevenir la diarrea asociada a antibióticos (S. boulardii, L. rhamnosus GG)",
+          "evidencia": "moderada"
+        },
+        {
+          "uso": "Síntomas de colon irritable (cepas específicas)",
+          "evidencia": "baja"
+        },
+        {
+          "uso": "Diarrea aguda infecciosa",
+          "evidencia": "baja"
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "1.000 a 10.000 millones de UFC/día según la cepa. S. boulardii: 250-500 mg/día.",
+        "limite_superior": "Sin UL.",
+        "nota": "El efecto depende de la CEPA (no solo de la especie): elegir la cepa estudiada para cada uso."
+      },
+      "como_tomar": "Con antibióticos: bacterias 2 h antes o después del antibiótico; S. boulardii (levadura) puede tomarse junto. Seguir 1-2 semanas tras terminar el antibiótico.",
+      "formas": [],
+      "efectos_secundarios": ["Gases y distensión los primeros días."],
+      "precauciones": [
+        "Inmunosupresión grave, catéter venoso central, prematuros, pancreatitis grave: riesgo de infección por el probiótico."
+      ],
+      "interacciones": ["Antifúngicos: inactivan a S. boulardii."],
+      "ficha": {
+        "indicaciones": "Prevenir la diarrea por antibióticos (S. boulardii, L. rhamnosus GG). Apoyo en colon irritable con cepas específicas.",
+        "efectosSecundarios": "Gases y distensión los primeros días.",
+        "observaciones": "El efecto depende de la cepa. Bacterias: 2 h separadas del antibiótico; S. boulardii puede ir junto (se inactiva con antifúngicos). Evitar en inmunosuprimidos graves o con catéter central."
+      },
+      "fuentes": ["nih-ods-probioticos", "minsal-proyecto-sustancias-2019"],
+      "excluir": []
+    },
+    {
+      "id": "glucosamina",
+      "nombre": "Glucosamina y condroitina",
+      "terminos": [
+        "glucosamina",
+        "condroitina",
+        "sulfato de glucosamina",
+        "sulfato de condroitina"
+      ],
+      "categoria": "articular",
+      "estatus_chile": {
+        "clasificacion": "Se encuentra como suplemento y también como medicamento; revisar el registro de cada producto.",
+        "limite_suplemento": "Sin límite específico.",
+        "nota": null
+      },
+      "usos": [
+        {
+          "uso": "Dolor y función en artrosis de rodilla",
+          "evidencia": "baja",
+          "nota": "Resultados mixtos; el ensayo GAIT no mostró beneficio general frente a placebo."
+        }
+      ],
+      "dosis_tipica_adultos": {
+        "suplementacion_habitual": "Glucosamina sulfato 1.500 mg/día; condroitina 800-1.200 mg/día. Evaluar a los 3 meses y suspender si no hay mejoría.",
+        "limite_superior": "Sin UL."
+      },
+      "como_tomar": "Con comida, una vez al día o repartida.",
+      "formas": [
+        {
+          "forma": "Glucosamina sulfato (cristalino) o clorhidrato",
+          "detalle": "El sulfato tiene algo más de evidencia."
+        }
+      ],
+      "efectos_secundarios": [
+        "Molestias digestivas, náuseas, estreñimiento o diarrea."
+      ],
+      "precauciones": [
+        "Alergia a mariscos (la glucosamina suele provenir de ellos).",
+        "Diabetes: controlar la glucosa al inicio.",
+        "Asma: casos de empeoramiento."
+      ],
+      "interacciones": [
+        "Warfarina y acenocumarol: puede aumentar el efecto anticoagulante (controlar el INR)."
+      ],
+      "ficha": {
+        "indicaciones": "Se usa para el dolor de la artrosis de rodilla; la evidencia es baja y mixta.",
+        "efectosSecundarios": "Molestias digestivas, náuseas.",
+        "observaciones": "Glucosamina sulfato 1.500 mg/día, condroitina 800-1.200 mg/día; suspender si no mejora a los 3 meses. Precaución con alergia a mariscos y con acenocumarol o warfarina (controlar INR)."
+      },
+      "fuentes": ["nccih-glucosamina"],
+      "excluir": ["sol oft"]
+    }
+  ],
+  "pendientes_de_verificar": [
+    "Vigencia del proyecto de resolución de 2019 sobre sustancias en suplementos (creatina, Q10, cafeína, ginseng, vitamina D 40 µg). No se encontró confirmación de su publicación.",
+    "El listado de ingredientes con régimen de medicamento (cúrcuma, ginkgo, cardo mariano, 5-HTP, rhodiola, maca negra y roja) proviene de una fuente secundaria (control-ciudadano.cl); solo la resolución de ashwagandha se confirmó en la Biblioteca del Congreso. Confirmar en el ISP antes de usarlo en atención.",
+    "Condición de venta exacta de cada producto de melatonina en Chile (revisar el registro ISP del producto).",
+    "Los porcentajes de magnesio elemental por forma son aproximados (varían según hidratación de la sal y fabricante)."
+  ],
+  "fuentes": [
+    {
+      "id": "minsal-res-394-2002",
+      "titulo": "Resolución Exenta 394/2002, Minsal: fija directrices nutricionales sobre suplementos alimentarios y sus contenidos en vitaminas y minerales (texto consolidado)",
+      "url": "https://www.dinta.cl/wp-content/uploads/2013/10/resol_394_suplementos_alimentarios.pdf",
+      "consultada": true
+    },
+    {
+      "id": "minsal-proyecto-sustancias-2019",
+      "titulo": "Proyecto de resolución Minsal: directrices sobre suplementos alimentarios y alimentos suplementados (consulta pública 2019)",
+      "url": "https://www.minsal.cl/wp-content/uploads/2019/08/proyecto-resolucion-sustancias-en-suplementos.pdf",
+      "consultada": true
+    },
+    {
+      "id": "minsal-rsa-2026",
+      "titulo": "Reglamento Sanitario de los Alimentos, DS 977/96, texto actualizado al 06-03-2026",
+      "url": "https://www.minsal.cl/wp-content/uploads/2026/05/RSA-Decreto-977-96-actualizado-06-03-2026.pdf",
+      "consultada": false
+    },
+    {
+      "id": "thefoodtech-rsa-2026",
+      "titulo": "Regulación alimentaria en Chile 2026: fortificación con vitamina D3",
+      "url": "https://thefoodtech.com/metodos-de-control-y-regulaciones/reglamento-sanitario-de-los-alimentos-en-chile-cambios-clave-tras-la-actualizacion-2026/",
+      "consultada": true
+    },
+    {
+      "id": "isp-res-2024-2013",
+      "titulo": "Resolución Exenta 2024/2013 del ISP: régimen de control para producto con Withania somnifera (Biblioteca del Congreso Nacional)",
+      "url": "https://www.bcn.cl/leychile/Navegar?idNorma=1053121",
+      "consultada": true
+    },
+    {
+      "id": "control-ciudadano-listado-isp",
+      "titulo": "Listado de ingredientes calificados por ISP con régimen de control sanitario de medicamento (fuente secundaria)",
+      "url": "https://www.control-ciudadano.cl/listado-ingredientes-regimen-medicamento-isp-chile/",
+      "consultada": true
+    },
+    {
+      "id": "control-ciudadano-ashwagandha",
+      "titulo": "Ashwagandha (Withania somnifera) en Chile (fuente secundaria)",
+      "url": "https://www.control-ciudadano.cl/ashwagandha/",
+      "consultada": true
+    },
+    {
+      "id": "isp-farmacovigilancia-melatonina",
+      "titulo": "Boletín de farmacovigilancia ISP: melatonina",
+      "url": "https://ispch.cl/newsfarmacovigilancia/22/images/parte02.pdf",
+      "consultada": true
+    },
+    {
+      "id": "vademecum-melatonina-3mg",
+      "titulo": "Vademécum Chile: Melatonina cápsulas 3 mg",
+      "url": "https://www.vademecum.es/chile/medicamento/1288260/melatonina-capsulas-3-mg",
+      "consultada": true
+    },
+    {
+      "id": "vademecum-colecalciferol-50000",
+      "titulo": "Vademécum Chile: Colecalciferol (vitamina D3) cápsulas blandas 50.000 UI",
+      "url": "https://www.vademecum.es/chile/medicamento/1617140/colecalciferol-vitamina-d3-capsulas-blandas-50-000-ui",
+      "consultada": true
+    },
+    {
+      "id": "nih-ods-vitamina-d",
+      "titulo": "NIH Office of Dietary Supplements: Vitamin D",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminD-Consumer/",
+      "consultada": true
+    },
+    {
+      "id": "nih-ods-magnesio",
+      "titulo": "NIH Office of Dietary Supplements: Magnesium (Health Professional)",
+      "url": "https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/",
+      "consultada": true
+    },
+    {
+      "id": "pmc-biodisponibilidad-magnesio",
+      "titulo": "Predicting and Testing Bioavailability of Magnesium Supplements (Nutrients, 2019)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6683096/",
+      "consultada": true
+    },
+    {
+      "id": "nih-ods-selenio",
+      "titulo": "NIH Office of Dietary Supplements: Selenium (Health Professional)",
+      "url": "https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/",
+      "consultada": true
+    },
+    {
+      "id": "nih-ods-ashwagandha",
+      "titulo": "NIH Office of Dietary Supplements: Ashwagandha (Health Professional)",
+      "url": "https://ods.od.nih.gov/factsheets/Ashwagandha-HealthProfessional/",
+      "consultada": true
+    },
+    {
+      "id": "issn-creatina-2017",
+      "titulo": "International Society of Sports Nutrition position stand: safety and efficacy of creatine supplementation (2017)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5469049/",
+      "consultada": true
+    },
+    {
+      "id": "pubmed-ajo-envejecido-presion",
+      "titulo": "Effects of aged garlic extract on blood pressure in hypertensive patients: systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39437887/",
+      "consultada": true
+    },
+    {
+      "id": "pmc-ajo-envejecido-colesterol",
+      "titulo": "Effects of an optimized aged garlic extract on cardiovascular risk factors in hypercholesterolemic subjects",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8838962/",
+      "consultada": true
+    },
+    {
+      "id": "acibadem-aceite-oregano",
+      "titulo": "Oil of oregano: strong claims, modest evidence",
+      "url": "https://acibademinternational.com/blog/oil-of-oregano-strong-claims-modest-evidence-the-honest-read/",
+      "consultada": true
+    },
+    {
+      "id": "pmc-aceite-oregano",
+      "titulo": "Chemical composition, antioxidant and antimicrobial activity of oregano essential oil (2024)",
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10818459/",
+      "consultada": true
+    },
+    {
+      "id": "nih-ods-zinc",
+      "titulo": "NIH Office of Dietary Supplements: Zinc",
+      "url": "https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-hierro",
+      "titulo": "NIH Office of Dietary Supplements: Iron",
+      "url": "https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-calcio",
+      "titulo": "NIH Office of Dietary Supplements: Calcium",
+      "url": "https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-vitamina-b12",
+      "titulo": "NIH Office of Dietary Supplements: Vitamin B12",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminB12-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-vitamina-c",
+      "titulo": "NIH Office of Dietary Supplements: Vitamin C",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-vitamina-k",
+      "titulo": "NIH Office of Dietary Supplements: Vitamin K",
+      "url": "https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-biotina",
+      "titulo": "NIH Office of Dietary Supplements: Biotin",
+      "url": "https://ods.od.nih.gov/factsheets/Biotin-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-omega-3",
+      "titulo": "NIH Office of Dietary Supplements: Omega-3 Fatty Acids",
+      "url": "https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nih-ods-probioticos",
+      "titulo": "NIH Office of Dietary Supplements: Probiotics",
+      "url": "https://ods.od.nih.gov/factsheets/Probiotics-HealthProfessional/",
+      "consultada": false
+    },
+    {
+      "id": "nccih-curcuma",
+      "titulo": "NCCIH: Turmeric",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "consultada": false
+    },
+    {
+      "id": "nccih-ajo",
+      "titulo": "NCCIH: Garlic",
+      "url": "https://www.nccih.nih.gov/health/garlic",
+      "consultada": false
+    },
+    {
+      "id": "nccih-ginseng",
+      "titulo": "NCCIH: Asian Ginseng",
+      "url": "https://www.nccih.nih.gov/health/asian-ginseng",
+      "consultada": false
+    },
+    {
+      "id": "nccih-glucosamina",
+      "titulo": "NCCIH: Glucosamine and Chondroitin for Osteoarthritis",
+      "url": "https://www.nccih.nih.gov/health/glucosamine-and-chondroitin-for-osteoarthritis",
+      "consultada": false
+    }
+  ],
+  "nota_fuentes": "'consultada: true' = fuente revisada durante esta investigación. 'consultada: false' = ficha de referencia estándar citada para datos generales (dosis diarias de referencia, límites superiores e interacciones conocidas) que no se volvió a abrir en esta sesión; conviene revisarla antes de publicar la ficha."
+}

@@ -3,6 +3,8 @@
 // "OLMEPRESS OLMESARTAN 20MG 40 COMP" → ficha "Olmesartán".
 // Un producto queda asociado a una ficha si su nombre contiene el principio activo o alguno
 // de sus términos como palabra completa, o si se asoció a mano.
+// Los términos con guion adelante excluyen: "zinc, -oxido de zinc" asocia los comprimidos de zinc
+// pero no las pomadas de óxido de zinc.
 
 import { normalizar } from "@/lib/mapa";
 
@@ -15,13 +17,25 @@ export type FichaCruce = {
 
 export type ProductoCruce = { id: number; nombre: string };
 
+type TerminosFicha = Pick<FichaCruce, "principioActivo" | "terminos">;
+
 // "Hioscina" + "hiocina, butilbromuro" → ["hioscina", "hiocina", "butilbromuro"]
-export function terminosDeFicha(
-  ficha: Pick<FichaCruce, "principioActivo" | "terminos">,
-): string[] {
+export function terminosDeFicha(ficha: TerminosFicha): string[] {
   const todos = [ficha.principioActivo, ...(ficha.terminos ?? "").split(",")]
     .map(normalizar)
+    .filter((t) => !t.startsWith("-"))
     .filter((t) => t.length >= 3); // "b6" o "c" coincidirían con demasiados productos
+  return [...new Set(todos)];
+}
+
+// "zinc, -oxido de zinc, -shampoo" → ["oxido de zinc", "shampoo"]
+export function exclusionesDeFicha(ficha: TerminosFicha): string[] {
+  const todos = (ficha.terminos ?? "")
+    .split(",")
+    .map(normalizar)
+    .filter((t) => t.startsWith("-"))
+    .map((t) => t.slice(1).trim())
+    .filter((t) => t.length >= 3);
   return [...new Set(todos)];
 }
 
@@ -31,9 +45,16 @@ function contienePalabra(texto: string, termino: string): boolean {
   return new RegExp(`(^|[^a-z0-9])${escapado}([^a-z0-9]|$)`).test(texto);
 }
 
-export function coincideNombre(nombre: string, terminos: string[]): boolean {
+export function coincideNombre(
+  nombre: string,
+  terminos: string[],
+  exclusiones: string[] = [],
+): boolean {
   const texto = normalizar(nombre);
-  return terminos.some((t) => contienePalabra(texto, t));
+  return (
+    terminos.some((t) => contienePalabra(texto, t)) &&
+    !exclusiones.some((t) => contienePalabra(texto, t))
+  );
 }
 
 export function fichasDeProducto<F extends FichaCruce>(
@@ -43,7 +64,11 @@ export function fichasDeProducto<F extends FichaCruce>(
   return fichas.filter(
     (f) =>
       f.productoIds.includes(producto.id) ||
-      coincideNombre(producto.nombre, terminosDeFicha(f)),
+      coincideNombre(
+        producto.nombre,
+        terminosDeFicha(f),
+        exclusionesDeFicha(f),
+      ),
   );
 }
 
@@ -53,10 +78,11 @@ export function productosDeFicha<P extends ProductoCruce>(
   productos: P[],
 ): { porNombre: P[]; aMano: P[] } {
   const terminos = terminosDeFicha(ficha);
+  const exclusiones = exclusionesDeFicha(ficha);
   const porNombre: P[] = [];
   const aMano: P[] = [];
   for (const p of productos) {
-    if (coincideNombre(p.nombre, terminos)) porNombre.push(p);
+    if (coincideNombre(p.nombre, terminos, exclusiones)) porNombre.push(p);
     else if (ficha.productoIds.includes(p.id)) aMano.push(p);
   }
   return { porNombre, aMano };

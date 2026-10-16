@@ -47,14 +47,15 @@ export default function FormularioFicha({ ficha }: { ficha?: Ficha }) {
       <Campo label="Otros nombres (opcional)" error={errores?.terminos?.[0]}>
         <input
           name="terminos"
-          maxLength={200}
+          maxLength={400}
           defaultValue={ficha?.terminos ?? ""}
-          placeholder="Ej: hioscina, hiocina"
+          placeholder="Ej: hiocina, butilbromuro, -crema"
           className="input w-full min-w-0"
         />
         <span className="text-xs font-normal text-steel">
           Separados por coma. Sirven si el nombre del producto lo escribe de
-          otra forma.
+          otra forma. Con guion adelante se excluye: ej. “-crema” deja fuera los
+          productos con “crema” en el nombre.
         </span>
       </Campo>
 

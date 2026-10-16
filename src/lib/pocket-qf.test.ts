@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buscarEnFichas,
   coincideNombre,
+  exclusionesDeFicha,
   fichasDeProducto,
   productosDeFicha,
   resaltar,
@@ -137,5 +138,36 @@ describe("resaltar", () => {
       { texto: " y ", marcado: false },
       { texto: "DEPRESION", marcado: true },
     ]);
+  });
+});
+
+describe("exclusiones", () => {
+  const zinc = {
+    id: 5,
+    principioActivo: "Zinc",
+    terminos: "gluconato de zinc, -oxido de zinc, -shampoo",
+    productoIds: [99],
+  };
+
+  it("separa términos y exclusiones", () => {
+    expect(terminosDeFicha(zinc)).toEqual(["zinc", "gluconato de zinc"]);
+    expect(exclusionesDeFicha(zinc)).toEqual(["oxido de zinc", "shampoo"]);
+  });
+
+  it("un producto con un término excluido no se asocia por nombre, pero sí a mano", () => {
+    expect(
+      fichasDeProducto({ id: 1, nombre: "ZINC 15MG 30 CAPS" }, [zinc]),
+    ).toEqual([zinc]);
+    expect(
+      fichasDeProducto({ id: 2, nombre: "PASTA LASSAR ÓXIDO DE ZINC 25G" }, [
+        zinc,
+      ]),
+    ).toEqual([]);
+    expect(
+      fichasDeProducto({ id: 3, nombre: "DHS SHAMPOO ZINC 2%" }, [zinc]),
+    ).toEqual([]);
+    expect(
+      fichasDeProducto({ id: 99, nombre: "OXIDO DE ZINC 10GR" }, [zinc]),
+    ).toEqual([zinc]);
   });
 });

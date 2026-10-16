@@ -188,7 +188,7 @@ export const esquemaFicha = z.object({
     .trim()
     .min(3, "Escribe el principio activo (al menos 3 letras)")
     .max(80, "Máximo 80 caracteres"),
-  terminos: textoFicha(200),
+  terminos: textoFicha(400),
   indicaciones: textoFicha(2000),
   efectosSecundarios: textoFicha(2000),
   observaciones: textoFicha(2000),

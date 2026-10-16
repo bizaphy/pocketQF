@@ -14,6 +14,12 @@ const enlaces = [
     icono: "M4 5h13v14H6a2 2 0 0 1-2-2V5Zm13 4h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5",
   },
   {
+    href: "https://www.ispch.gob.cl/farmacias-de-turno/",
+    nombre: "Farmacias de turno",
+    descripcion: "Calendario semestral (RM)",
+    icono: "M5 6h14v14H5V6Zm0 4h14M9 3v4M15 3v4M12 12.5v5M9.5 15h5",
+  },
+  {
     href: "https://www.feriados.cl/",
     nombre: "Calendario nacional",
     descripcion: "Feriados de Chile",
