@@ -4,7 +4,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { esquemaConteo, esquemaGenerarInventario } from "@/lib/esquemas";
-import { generarInventario, guardarConteos } from "@/lib/inventario";
+import {
+  generarInventario,
+  generarInventarioControlados,
+  guardarConteos,
+} from "@/lib/inventario";
 
 export type EstadoGenerar = {
   ok: false;
@@ -47,6 +51,22 @@ export async function generarInventarioAccion(
   redirect(
     `/inventario/${r.id}?generado=${r.elegidos}&recientes=${r.recientes}`,
   );
+}
+
+// inventario de controlados: entran todos, no hay nada que validar salvo el checkbox
+export async function generarControladosAccion(
+  _estadoAnterior: EstadoGenerar, // lo exige useActionState; no se usa
+  formData: FormData,
+): Promise<EstadoGenerar> {
+  const r = generarInventarioControlados(
+    formData.get("incluirSinStock") === "on",
+  );
+  if (!r.ok) {
+    return { ok: false, mensaje: "No hay productos controlados que contar" };
+  }
+
+  revalidatePath("/inventario");
+  redirect(`/inventario/${r.id}?generado=${r.elegidos}`);
 }
 
 export type EstadoConteo =

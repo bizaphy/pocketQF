@@ -14,12 +14,18 @@ import {
   gt,
   gte,
   isNull,
+  ne,
   notExists,
+  or,
   sql,
 } from "drizzle-orm";
 import { db } from "@/db";
 import { inventarioItems, inventarios, productos } from "@/db/schema";
 import type { DatosGenerarInventario } from "@/lib/esquemas";
+
+// Los controlados se inventarían aparte y completos (ver generarInventarioControlados),
+// así que el inventario del día nunca los incluye
+export const CATEGORIA_CONTROLADOS = "Controlado";
 
 // categorías con productos activos, para el selector del formulario
 export async function obtenerCategorias() {
@@ -38,6 +44,7 @@ export async function obtenerCategorias() {
 
 // Elige al azar los productos a contar y crea el inventario. Quedan fuera:
 // - los inactivos (ya no vienen en el Excel)
+// - los controlados (tienen su propio inventario)
 // - los de otra categoría (en modo "categoria")
 // - los con stock 0, salvo que se pida incluirlos
 // - los contados en los últimos `diasSinRepetir` días
@@ -46,6 +53,10 @@ export function generarInventario(datos: DatosGenerarInventario) {
 
   const filtros = and(
     eq(productos.activo, true),
+    or(
+      isNull(productos.categoria),
+      ne(productos.categoria, CATEGORIA_CONTROLADOS),
+    ),
     datos.modo === "categoria"
       ? eq(productos.categoria, datos.categoria!)
       : undefined,
@@ -122,6 +133,63 @@ export function generarInventario(datos: DatosGenerarInventario) {
       faltaron: elegidos.length < datos.cantidad, // no alcanzaron los productos para la cantidad pedida
       recientes,
     };
+  });
+}
+
+// productos que entrarían en el inventario de controlados (para mostrarlo antes de generarlo)
+export async function contarControlados() {
+  await connection();
+  const filtro = and(
+    eq(productos.activo, true),
+    eq(productos.categoria, CATEGORIA_CONTROLADOS),
+  );
+  const fila = db
+    .select({
+      total: count(),
+      conStock: sql<number>`coalesce(sum(${productos.stock} > 0), 0)`,
+    })
+    .from(productos)
+    .where(filtro)
+    .get()!;
+  return fila;
+}
+
+// Inventario de controlados: todos los controlados activos, sin azar ni límite,
+// para cuadrar el libro completo. Por defecto entran también los con stock 0
+// (si aparece uno físicamente, es una diferencia que hay que ver)
+export function generarInventarioControlados(incluirSinStock: boolean) {
+  return db.transaction((tx) => {
+    const elegidos = tx
+      .select({ id: productos.id, stock: productos.stock })
+      .from(productos)
+      .where(
+        and(
+          eq(productos.activo, true),
+          eq(productos.categoria, CATEGORIA_CONTROLADOS),
+          incluirSinStock ? undefined : gt(productos.stock, 0),
+        ),
+      )
+      .all();
+
+    if (elegidos.length === 0) return { ok: false as const };
+
+    const inventario = tx
+      .insert(inventarios)
+      .values({ modo: "controlados", categoria: CATEGORIA_CONTROLADOS })
+      .returning()
+      .get();
+
+    tx.insert(inventarioItems)
+      .values(
+        elegidos.map((p) => ({
+          inventarioId: inventario.id,
+          productoId: p.id,
+          stockSistema: p.stock,
+        })),
+      )
+      .run();
+
+    return { ok: true as const, id: inventario.id, elegidos: elegidos.length };
   });
 }
 

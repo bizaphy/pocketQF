@@ -81,8 +81,9 @@ export const notaEdiciones = sqliteTable(
 // inventario del día: una lista de productos elegidos para contar
 export const inventarios = sqliteTable("inventarios", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  modo: text("modo", { enum: ["azar", "categoria"] }).notNull(),
-  categoria: text("categoria"), // solo en modo "categoria"
+  // controlados: todos los de la categoría "Controlado", que el inventario del día excluye
+  modo: text("modo", { enum: ["azar", "categoria", "controlados"] }).notNull(),
+  categoria: text("categoria"), // solo en modo "categoria" (y "Controlado" en modo "controlados")
   creadoEn: integer("creado_en", { mode: "timestamp" })
     .notNull()
     .$defaultFn(() => new Date()),
