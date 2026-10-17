@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import FormularioConteo from "@/components/formulario-conteo";
+import IconoCandado from "@/components/icono-candado";
 import { formatearDiaFechaHora } from "@/lib/fechas";
 import { obtenerInventario } from "@/lib/inventario";
 
@@ -27,9 +28,19 @@ export default async function InventarioDetallePage({
         ← Volver a inventario
       </Link>
       <header className="mb-6 mt-2">
+        {inventario.modo === "controlados" && (
+          <span className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-strawberry px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">
+            <IconoCandado className="size-3.5" />
+            Controlados · uso restringido
+          </span>
+        )}
         <h1 className="text-3xl font-bold text-deep-space">
           Inventario{" "}
-          {inventario.modo === "categoria" ? inventario.categoria : "al azar"}
+          {inventario.modo === "controlados"
+            ? "de controlados"
+            : inventario.modo === "categoria"
+              ? inventario.categoria
+              : "al azar"}
         </h1>
         <p className="mt-1 text-steel">
           {formatearDiaFechaHora(inventario.creadoEn)} ·{" "}
@@ -42,7 +53,9 @@ export default async function InventarioDetallePage({
 
       {generado && !inventario.finalizadoEn && (
         <p className="mb-4 rounded-lg bg-honeydew px-4 py-3 text-sm">
-          Se eligieron {generado} productos al azar.
+          {inventario.modo === "controlados"
+            ? `Se agregaron los ${generado} productos controlados.`
+            : `Se eligieron ${generado} productos al azar.`}
           {Number(recientes) > 0 &&
             ` Se omitieron ${recientes} porque se contaron hace poco.`}
         </p>

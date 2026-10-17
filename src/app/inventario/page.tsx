@@ -1,10 +1,17 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import FormularioInventario from "@/components/formulario-inventario";
+import FormularioControlados from "@/components/formulario-controlados";
+import IconoCandado from "@/components/icono-candado";
 import EncabezadoModulo from "@/components/encabezado-modulo";
 import { obtenerModulo } from "@/lib/modulos";
 import { formatearDiaFechaHora, formatearFecha } from "@/lib/fechas";
-import { obtenerCategorias, obtenerInventarios } from "@/lib/inventario";
+import {
+  CATEGORIA_CONTROLADOS,
+  contarControlados,
+  obtenerCategorias,
+  obtenerInventarios,
+} from "@/lib/inventario";
 import { claveDia, claveMes, leerMes } from "@/lib/calendario";
 import CalendarioInventarios, {
   type InventarioDelDia,
@@ -17,10 +24,15 @@ export default async function InventarioPage({
 }: PageProps<"/inventario">) {
   // ?mes=2026-10 elige el mes del calendario; ?dia=2026-10-14 filtra la tabla por ese día
   const params = await searchParams;
-  const [categorias, todos] = await Promise.all([
+  const [todasLasCategorias, controlados, todos] = await Promise.all([
     obtenerCategorias(),
+    contarControlados(),
     obtenerInventarios(),
   ]);
+  // los controlados tienen su propio inventario: no se ofrecen en el del día
+  const categorias = todasLasCategorias.filter(
+    (c) => c.categoria !== CATEGORIA_CONTROLADOS,
+  );
 
   const hoy = new Date();
   const mes = leerMes(
@@ -51,20 +63,43 @@ export default async function InventarioPage({
       />
 
       <div className="grid items-start gap-6 lg:grid-cols-[1fr_320px]">
-        <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
-          <h2 className="mb-4 font-semibold">Generar inventario del día</h2>
-          {categorias.length === 0 ? (
-            <p className="text-sm text-steel">
-              No hay productos cargados.{" "}
-              <Link href="/productos" className="underline">
-                Sube el Excel de productos
-              </Link>{" "}
-              para generar un inventario.
-            </p>
-          ) : (
-            <FormularioInventario categorias={categorias} />
+        <div className="grid gap-6">
+          <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
+            <h2 className="mb-4 font-semibold">Generar inventario del día</h2>
+            {categorias.length === 0 ? (
+              <p className="text-sm text-steel">
+                No hay productos cargados.{" "}
+                <Link href="/productos" className="underline">
+                  Sube el Excel de productos
+                </Link>{" "}
+                para generar un inventario.
+              </p>
+            ) : (
+              <FormularioInventario categorias={categorias} />
+            )}
+          </section>
+
+          {/* controlados: tarjeta aparte con acento rojo y candado, para que se note que es restringido */}
+          {controlados.total > 0 && (
+            <section className="rounded-xl border border-strawberry/40 border-l-4 border-l-strawberry bg-strawberry/5 p-5 shadow-sm">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+                <h2 className="flex items-center gap-2 font-semibold text-deep-space">
+                  <span className="grid size-8 place-items-center rounded-full bg-strawberry text-white">
+                    <IconoCandado />
+                  </span>
+                  Inventario de controlados
+                </h2>
+                <span className="rounded-full border border-strawberry/50 bg-white px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-strawberry">
+                  Uso restringido
+                </span>
+              </div>
+              <FormularioControlados
+                total={controlados.total}
+                conStock={controlados.conStock}
+              />
+            </section>
           )}
-        </section>
+        </div>
 
         <section className="rounded-xl border border-frosted bg-white p-5 shadow-sm">
           <h2 className="mb-3 font-semibold">Calendario</h2>
@@ -131,7 +166,16 @@ export default async function InventarioPage({
                       </Link>
                     </td>
                     <td className="px-4 py-3 text-steel">
-                      {inv.modo === "categoria" ? inv.categoria : "Al azar"}
+                      {inv.modo === "controlados" ? (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-strawberry/10 px-2 py-0.5 text-xs font-semibold text-strawberry">
+                          <IconoCandado className="size-3.5" />
+                          Controlados
+                        </span>
+                      ) : inv.modo === "categoria" ? (
+                        inv.categoria
+                      ) : (
+                        "Al azar"
+                      )}
                     </td>
                     <td className="px-4 py-3 text-right tabular-nums">
                       {inv.contados}/{inv.total}
